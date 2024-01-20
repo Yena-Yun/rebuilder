@@ -4,84 +4,112 @@ import { ReactComponent as LogoImage } from '../../assets/svgs/logo.svg';
 import { ReactComponent as LanguageImage } from '../../assets/svgs/language.svg';
 
 export const Header = () => {
-  const [isHoverNavIndex, setIsHoverNavIndex] = useState('');
+  const [hoveredNavId, setHoveredNavId] = useState('');
   const [isHoverTechnology, setIsHoverTechnology] = useState(false);
   const [isHoverLanguage, setIsHoverLanguage] = useState(false);
-  const [isSelectedLanguage, setIsSelectedLanguage] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState('KOR');
 
   return (
-    <Container>
-      <InnerContainer id='header' isHoverTechnology={isHoverTechnology}>
-        <UpperContainer>
-          <LogoLink
-            href='https://rebuilderai.com'
-            aria-label='Go Back to HomePage'
-          >
-            <LogoImage />
-          </LogoLink>
+    <div style={{ position: 'relative' }}>
+      <Container>
+        <InnerContainer id='header' isHoverTechnology={isHoverTechnology}>
+          <UpperContainer>
+            <LogoLink
+              href='https://rebuilderai.com'
+              aria-label='Go Back to HomePage'
+            >
+              <LogoImage />
+            </LogoLink>
 
-          <Navigation>
-            {['Service', 'Technology', 'About', 'Contact'].map((nav) => {
-              return nav === 'Technology' ? (
-                <NavTab
-                  borderLine={isHoverNavIndex === nav}
+            <Navigation>
+              {['Service', 'Technology', 'About', 'Contact'].map((nav) => {
+                return nav === 'Technology' ? (
+                  <NavTab
+                    borderLine={hoveredNavId === nav}
+                    onMouseOver={() => {
+                      setHoveredNavId(nav);
+                      setIsHoverTechnology(true);
+                    }}
+                    onMouseLeave={() => setHoveredNavId('')}
+                  >
+                    {nav}
+                  </NavTab>
+                ) : (
+                  <NavTab
+                    borderLine={hoveredNavId === nav}
+                    onMouseOver={() => {
+                      setHoveredNavId(nav);
+                      setIsHoverTechnology(false);
+                    }}
+                    onMouseLeave={() => setHoveredNavId('')}
+                  >
+                    {nav}
+                  </NavTab>
+                );
+              })}
+            </Navigation>
+
+            <div></div>
+
+            <LanguageSelector
+              onMouseOver={() => setIsHoverLanguage(true)}
+              onMouseLeave={() => setIsHoverLanguage(false)}
+            >
+              <LanguageImage />
+            </LanguageSelector>
+          </UpperContainer>
+
+          <DropdownContainer
+            isHoverTechnology={isHoverTechnology}
+            hoveredNavId={hoveredNavId}
+          >
+            {['광원추론', '재질추론', '실측크기', '3D 공간 영상'].map(
+              (subNav) => (
+                <Dropdown
+                  borderLine={hoveredNavId === subNav}
                   onMouseOver={() => {
-                    setIsHoverNavIndex(nav);
+                    setHoveredNavId(subNav);
                     setIsHoverTechnology(true);
                   }}
-                  onMouseLeave={() => setIsHoverNavIndex('')}
+                  onMouseLeave={() => setHoveredNavId('')}
                 >
-                  {nav}
-                </NavTab>
-              ) : (
-                <NavTab
-                  borderLine={isHoverNavIndex === nav}
-                  onMouseOver={() => {
-                    setIsHoverNavIndex(nav);
-                    setIsHoverTechnology(false);
-                  }}
-                  onMouseLeave={() => setIsHoverNavIndex('')}
+                  {subNav}
+                </Dropdown>
+              )
+            )}
+          </DropdownContainer>
+        </InnerContainer>
+      </Container>
+
+      {/* Language 선택 모달 */}
+      {isHoverLanguage ? (
+        <>
+          <div
+            onMouseOver={() => setIsHoverLanguage(true)}
+            onMouseLeave={() => setIsHoverLanguage(false)}
+            style={{
+              position: 'fixed',
+              top: '65px',
+              right: '10px',
+              width: '70px',
+              height: '20px',
+              zIndex: '150',
+            }}
+          >
+            <LanguageModal isHoverLanguage={isHoverLanguage}>
+              {['KOR', 'ENG'].map((language) => (
+                <LanguageListItem
+                  onClick={() => setSelectedLanguage(language)}
+                  isSelected={selectedLanguage === language}
                 >
-                  {nav}
-                </NavTab>
-              );
-            })}
-          </Navigation>
-
-          <Language>
-            <LanguageImage />
-          </Language>
-          <LanguageModal isHoverLanguage={isHoverLanguage}>
-            <LanguageListItem isSelectedLanguage={isSelectedLanguage}>
-              KOR
-            </LanguageListItem>
-            <LanguageListItem isSelectedLanguage={isSelectedLanguage}>
-              ENG
-            </LanguageListItem>
-          </LanguageModal>
-        </UpperContainer>
-
-        <DropdownContainer
-          isHoverTechnology={isHoverTechnology}
-          isHoverNavIndex={isHoverNavIndex}
-        >
-          {['광원추론', '재질추론', '실측크기', '3D 공간 영상'].map(
-            (subNav) => (
-              <Dropdown
-                borderLine={isHoverNavIndex === subNav}
-                onMouseOver={() => {
-                  setIsHoverNavIndex(subNav);
-                  setIsHoverTechnology(true);
-                }}
-                onMouseLeave={() => setIsHoverNavIndex('')}
-              >
-                {subNav}
-              </Dropdown>
-            )
-          )}
-        </DropdownContainer>
-      </InnerContainer>
-    </Container>
+                  {language}
+                </LanguageListItem>
+              ))}
+            </LanguageModal>
+          </div>
+        </>
+      ) : null}
+    </div>
   );
 };
 
@@ -91,7 +119,7 @@ const Container = styled.div`
   width: 100%;
   border-bottom: 1px solid rgb(0, 0, 0);
   background-color: rgb(0, 0, 0);
-  z-index: 999;
+  z-index: 100;
 `;
 
 const InnerContainer = styled.div<{ isHoverTechnology: boolean }>`
@@ -113,14 +141,13 @@ const LogoLink = styled.a``;
 const Navigation = styled.div`
   display: flex;
   align-items: center;
-  height: 40px; // 밑줄 애니메이션 직후에 밑줄이 얇아지는 문제 해결
 `;
 
 const NavTab = styled.span<{ borderLine: boolean }>`
   position: relative;
   margin-left: 46px;
   color: rgb(255, 255, 255);
-  font-size: 1.2rem;
+  font-size: 2rem;
   font-weight: 500;
   line-height: 24px;
   cursor: pointer;
@@ -145,11 +172,10 @@ const NavTab = styled.span<{ borderLine: boolean }>`
 
 const DropdownContainer = styled.div<{
   isHoverTechnology: boolean;
-  isHoverNavIndex: string;
+  hoveredNavId: string;
 }>`
   display: ${({ isHoverTechnology }) => (isHoverTechnology ? 'flex' : 'none')};
-  display: ${({ isHoverNavIndex }) =>
-    isHoverNavIndex === 'Technology' && 'flex'};
+  display: ${({ hoveredNavId }) => hoveredNavId === 'Technology' && 'flex'};
   justify-content: center;
   align-items: center;
   margin-top: 48px;
@@ -161,7 +187,7 @@ const Dropdown = styled.span<{ borderLine: boolean }>`
   display: block;
   margin-left: 40px;
   color: rgb(255, 255, 255);
-  font-size: 1.3rem;
+  font-size: 2rem;
   line-height: 24px;
   cursor: pointer;
 
@@ -183,7 +209,8 @@ const Dropdown = styled.span<{ borderLine: boolean }>`
   }
 `;
 
-const Language = styled.div`
+const LanguageSelector = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -199,18 +226,40 @@ const Language = styled.div`
   }
 `;
 
-const LanguageModal = styled.ul<{ isHoverLanguage: boolean }>`
-  display: ${({ isHoverLanguage }) => (isHoverLanguage ? 'block' : 'none')};
+const LanguageModal = styled.ul<{
+  isHoverLanguage: boolean;
+}>`
+  position: fixed;
+  top: 80px;
+  right: 10px;
+  display: block;
   width: 70px;
+  height: 90px;
   background-color: rgb(255, 255, 255);
   border-radius: 4px;
+  animation: fadein 0.2s;
+  z-index: 200;
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
-const LanguageListItem = styled.li<{ isSelectedLanguage: boolean }>`
-  color: ${({ isSelectedLanguage }) =>
-    isSelectedLanguage ? 'rgb(0, 0, 0)' : 'rgb(111, 117, 123)'};
-  margin: 16px 0;
+const LanguageListItem = styled.li<{ isSelected: boolean }>`
+  margin: 8px 0;
+  padding: 6px 0;
+  color: ${({ isSelected }) => (isSelected ? 'rgb(0, 0, 0)' : 'gray')};
+  font-size: 1.7rem;
+  font-weight: 500;
   text-align: center;
-  font-size: 1rem;
   cursor: pointer;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
 `;

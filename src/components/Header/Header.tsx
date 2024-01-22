@@ -10,7 +10,7 @@ export const Header = () => {
   const [selectedLanguage, setSelectedLanguage] = useState('KOR');
 
   return (
-    <div style={{ position: 'relative' }}>
+    <>
       <Container>
         <InnerContainer id='header' isHoverTechnology={isHoverTechnology}>
           <UpperContainer>
@@ -56,6 +56,20 @@ export const Header = () => {
               onMouseLeave={() => setIsHoverLanguage(false)}
             >
               <LanguageImage />
+              {isHoverLanguage && (
+                <LanguageModalSpace isHoverLanguage={isHoverLanguage}>
+                  <LanguageModal>
+                    {['KOR', 'ENG'].map((language) => (
+                      <LanguageListItem
+                        onClick={() => setSelectedLanguage(language)}
+                        isSelected={selectedLanguage === language}
+                      >
+                        {language}
+                      </LanguageListItem>
+                    ))}
+                  </LanguageModal>
+                </LanguageModalSpace>
+              )}
             </LanguageSelector>
           </UpperContainer>
 
@@ -80,56 +94,28 @@ export const Header = () => {
           </DropdownContainer>
         </InnerContainer>
       </Container>
-
-      {/* Language 선택 모달 */}
-      {isHoverLanguage ? (
-        <>
-          <div
-            onMouseOver={() => setIsHoverLanguage(true)}
-            onMouseLeave={() => setIsHoverLanguage(false)}
-            style={{
-              position: 'fixed',
-              top: '65px',
-              right: '10px',
-              width: '70px',
-              height: '20px',
-              zIndex: '150',
-            }}
-          >
-            <LanguageModal isHoverLanguage={isHoverLanguage}>
-              {['KOR', 'ENG'].map((language) => (
-                <LanguageListItem
-                  onClick={() => setSelectedLanguage(language)}
-                  isSelected={selectedLanguage === language}
-                >
-                  {language}
-                </LanguageListItem>
-              ))}
-            </LanguageModal>
-          </div>
-        </>
-      ) : null}
-    </div>
+    </>
   );
 };
 
 const Container = styled.div`
   position: relative;
-  top: 0;
   width: 100%;
   border-bottom: 1px solid rgb(0, 0, 0);
   background-color: rgb(0, 0, 0);
-  z-index: 100;
+  z-index: 500;
 `;
 
 const InnerContainer = styled.div<{ isHoverTechnology: boolean }>`
-  width: 100%;
+  width: 1200px;
   height: ${({ isHoverTechnology }) => (isHoverTechnology ? '181px' : '94px')};
+  margin: 0 auto;
   padding: 0 30px;
   transition: height 0.2s ease-in-out;
 `;
 
 const UpperContainer = styled.div`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -180,6 +166,7 @@ const DropdownContainer = styled.div<{
   align-items: center;
   margin-top: 48px;
   white-space: pre-wrap;
+  z-index: 300;
 `;
 
 const Dropdown = styled.span<{ borderLine: boolean }>`
@@ -217,6 +204,7 @@ const LanguageSelector = styled.div`
   width: 30px;
   height: 30px;
   color: rgb(255, 255, 255);
+  z-index: 700;
   cursor: pointer;
 
   &:hover {
@@ -226,19 +214,27 @@ const LanguageSelector = styled.div`
   }
 `;
 
-const LanguageModal = styled.ul<{
+const LanguageModalSpace = styled.div<{
   isHoverLanguage: boolean;
 }>`
-  position: fixed;
-  top: 80px;
-  right: 10px;
-  display: block;
-  width: 70px;
-  height: 90px;
+  position: absolute;
+  top: 90%;
+  right: -80%;
+  display: ${({ isHoverLanguage }) => (isHoverLanguage ? 'block' : 'none')};
+  width: 80px;
+  height: 30px;
+  cursor: default;
+`;
+
+const LanguageModal = styled.ul`
+  position: absolute;
+  top: 20px;
+  right: 0;
+  width: 100%;
+  padding: 12px 0;
   background-color: rgb(255, 255, 255);
   border-radius: 4px;
   animation: fadein 0.2s;
-  z-index: 200;
 
   @keyframes fadein {
     from {
@@ -251,9 +247,9 @@ const LanguageModal = styled.ul<{
 `;
 
 const LanguageListItem = styled.li<{ isSelected: boolean }>`
-  margin: 8px 0;
-  padding: 6px 0;
-  color: ${({ isSelected }) => (isSelected ? 'rgb(0, 0, 0)' : 'gray')};
+  padding: 10px 0;
+  color: ${({ isSelected }) =>
+    isSelected ? 'rgb(0, 0, 0)' : 'rgb(111, 117, 123)'};
   font-size: 1.7rem;
   font-weight: 500;
   text-align: center;

@@ -41,7 +41,7 @@ const IntroVideo = styled.div`
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  z-index: 150;
+  z-index: 100;
 `;
 
 const VideoContainer = styled.video`
@@ -61,7 +61,7 @@ const MainBackground = styled.div`
     rgba(0, 0, 0, 0.75) 0%,
     rgba(0, 0, 0, 0) 100%
   );
-  z-index: 200;
+  z-index: 150;
 `;
 
 const ParagraphContainer = styled.div`
@@ -72,7 +72,7 @@ const ParagraphContainer = styled.div`
   width: 100%;
   padding: 0 30px;
   overflow: hidden;
-  z-index: 250;
+  z-index: 200;
 `;
 
 const ParagraphInnerContainer = styled.div`

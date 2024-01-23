@@ -76,6 +76,7 @@ export const Header = () => {
           <DropdownContainer
             isHoverTechnology={isHoverTechnology}
             hoveredNavId={hoveredNavId}
+            onMouseLeave={() => setIsHoverTechnology(false)}
           >
             {['광원추론', '재질추론', '실측크기', '3D 공간 영상'].map(
               (subNav) => (
@@ -99,7 +100,7 @@ export const Header = () => {
 };
 
 const Container = styled.div`
-  position: relative;
+  position: fixed;
   width: 100%;
   border-bottom: 1px solid rgb(0, 0, 0);
   background-color: rgb(0, 0, 0);

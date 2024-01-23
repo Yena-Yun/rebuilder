@@ -26,9 +26,6 @@ export const Section1 = () => {
 };
 
 const Container = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100vh;
   background-color: rgb(0, 0, 0);
@@ -38,17 +35,17 @@ const IntroVideo = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
+  transform: translate(-50%, -50%);
   z-index: 100;
 `;
 
 const VideoContainer = styled.video`
   width: 100%;
   height: 100%;
-  object-fit: cover;
   padding-top: 95px;
+  object-fit: cover;
 `;
 
 const MainBackground = styled.div`
@@ -68,9 +65,9 @@ const ParagraphContainer = styled.div`
   position: absolute;
   left: 50%;
   bottom: 140px;
-  transform: translate(-50%);
   width: 100%;
   padding: 0 30px;
+  transform: translate(-50%);
   overflow: hidden;
   z-index: 200;
 `;
@@ -82,9 +79,9 @@ const ParagraphInnerContainer = styled.div`
 `;
 
 const ParagraphLine1 = styled.div`
+  margin-bottom: 40px;
   opacity: 0;
   animation: 1s ease-in-out 2.5s 1 normal forwards running easeinout;
-  margin-bottom: 40px;
 
   & span {
     display: block;

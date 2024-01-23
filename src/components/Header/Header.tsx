@@ -12,7 +12,7 @@ export const Header = () => {
   return (
     <>
       <Container>
-        <InnerContainer id='header' isHoverTechnology={isHoverTechnology}>
+        <InnerContainer id='header' $isHoverTechnology={isHoverTechnology}>
           <UpperContainer>
             <LogoLink
               href='https://rebuilderai.com'
@@ -25,7 +25,8 @@ export const Header = () => {
               {['Service', 'Technology', 'About', 'Contact'].map((nav) => {
                 return nav === 'Technology' ? (
                   <NavTab
-                    borderLine={hoveredNavId === nav}
+                    key={nav}
+                    $borderLine={hoveredNavId === nav}
                     onMouseOver={() => {
                       setHoveredNavId(nav);
                       setIsHoverTechnology(true);
@@ -36,7 +37,8 @@ export const Header = () => {
                   </NavTab>
                 ) : (
                   <NavTab
-                    borderLine={hoveredNavId === nav}
+                    key={nav}
+                    $borderLine={hoveredNavId === nav}
                     onMouseOver={() => {
                       setHoveredNavId(nav);
                       setIsHoverTechnology(false);
@@ -57,12 +59,13 @@ export const Header = () => {
             >
               <LanguageImage />
               {isHoverLanguage && (
-                <LanguageModalSpace isHoverLanguage={isHoverLanguage}>
+                <LanguageModalSpace $isHoverLanguage={isHoverLanguage}>
                   <LanguageModal>
                     {['KOR', 'ENG'].map((language) => (
                       <LanguageListItem
+                        key={language}
                         onClick={() => setSelectedLanguage(language)}
-                        isSelected={selectedLanguage === language}
+                        $isSelected={selectedLanguage === language}
                       >
                         {language}
                       </LanguageListItem>
@@ -74,14 +77,15 @@ export const Header = () => {
           </UpperContainer>
 
           <DropdownContainer
-            isHoverTechnology={isHoverTechnology}
-            hoveredNavId={hoveredNavId}
+            $isHoverTechnology={isHoverTechnology}
+            $hoveredNavId={hoveredNavId}
             onMouseLeave={() => setIsHoverTechnology(false)}
           >
             {['광원추론', '재질추론', '실측크기', '3D 공간 영상'].map(
               (subNav) => (
                 <Dropdown
-                  borderLine={hoveredNavId === subNav}
+                  key={subNav}
+                  $borderLine={hoveredNavId === subNav}
                   onMouseOver={() => {
                     setHoveredNavId(subNav);
                     setIsHoverTechnology(true);
@@ -107,9 +111,10 @@ const Container = styled.div`
   z-index: 500;
 `;
 
-const InnerContainer = styled.div<{ isHoverTechnology: boolean }>`
+const InnerContainer = styled.div<{ $isHoverTechnology: boolean }>`
   width: 1200px;
-  height: ${({ isHoverTechnology }) => (isHoverTechnology ? '181px' : '94px')};
+  height: ${({ $isHoverTechnology }) =>
+    $isHoverTechnology ? '181px' : '94px'};
   margin: 0 auto;
   padding: 0 30px;
   transition: height 0.2s ease-in-out;
@@ -130,7 +135,7 @@ const Navigation = styled.div`
   align-items: center;
 `;
 
-const NavTab = styled.span<{ borderLine: boolean }>`
+const NavTab = styled.span<{ $borderLine: boolean }>`
   position: relative;
   margin-left: 46px;
   color: rgb(255, 255, 255);
@@ -152,17 +157,19 @@ const NavTab = styled.span<{ borderLine: boolean }>`
     height: 2px;
     background-color: rgb(23, 60, 254);
     transform-origin: 0 0; // 그어지는 밑줄이 시작하는 좌표
-    transform: ${({ borderLine }) => (borderLine ? 'scaleX(1)' : 'scaleX(0)')};
+    transform: ${({ $borderLine }) =>
+      $borderLine ? 'scaleX(1)' : 'scaleX(0)'};
     transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1) 0s;
   }
 `;
 
 const DropdownContainer = styled.div<{
-  isHoverTechnology: boolean;
-  hoveredNavId: string;
+  $isHoverTechnology: boolean;
+  $hoveredNavId: string;
 }>`
-  display: ${({ isHoverTechnology }) => (isHoverTechnology ? 'flex' : 'none')};
-  display: ${({ hoveredNavId }) => hoveredNavId === 'Technology' && 'flex'};
+  display: ${({ $isHoverTechnology }) =>
+    $isHoverTechnology ? 'flex' : 'none'};
+  display: ${({ $hoveredNavId }) => $hoveredNavId === 'Technology' && 'flex'};
   justify-content: center;
   align-items: center;
   margin-top: 48px;
@@ -170,7 +177,7 @@ const DropdownContainer = styled.div<{
   z-index: 300;
 `;
 
-const Dropdown = styled.span<{ borderLine: boolean }>`
+const Dropdown = styled.span<{ $borderLine: boolean }>`
   position: relative;
   display: block;
   margin-left: 40px;
@@ -192,7 +199,8 @@ const Dropdown = styled.span<{ borderLine: boolean }>`
     height: 2px;
     background-color: rgb(23, 60, 254);
     transform-origin: 0 0; // 그어지는 밑줄이 시작하는 좌표
-    transform: ${({ borderLine }) => (borderLine ? 'scaleX(1)' : 'scaleX(0)')};
+    transform: ${({ $borderLine }) =>
+      $borderLine ? 'scaleX(1)' : 'scaleX(0)'};
     transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1) 0s;
   }
 `;
@@ -216,12 +224,12 @@ const LanguageSelector = styled.div`
 `;
 
 const LanguageModalSpace = styled.div<{
-  isHoverLanguage: boolean;
+  $isHoverLanguage: boolean;
 }>`
   position: absolute;
   top: 90%;
   right: -80%;
-  display: ${({ isHoverLanguage }) => (isHoverLanguage ? 'block' : 'none')};
+  display: ${({ $isHoverLanguage }) => ($isHoverLanguage ? 'block' : 'none')};
   width: 80px;
   height: 30px;
   cursor: default;
@@ -247,10 +255,10 @@ const LanguageModal = styled.ul`
   }
 `;
 
-const LanguageListItem = styled.li<{ isSelected: boolean }>`
+const LanguageListItem = styled.li<{ $isSelected: boolean }>`
   padding: 10px 0;
-  color: ${({ isSelected }) =>
-    isSelected ? 'rgb(0, 0, 0)' : 'rgb(111, 117, 123)'};
+  color: ${({ $isSelected }) =>
+    $isSelected ? 'rgb(0, 0, 0)' : 'rgb(111, 117, 123)'};
   font-size: 1.7rem;
   font-weight: 500;
   text-align: center;

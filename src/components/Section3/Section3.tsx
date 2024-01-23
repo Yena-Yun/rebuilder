@@ -7,7 +7,7 @@ export const Section3 = () => {
       <InnerContainer>
         <ImageContainer>
           {IMAGE_TEXTS.map((text, i) => (
-            <ImageBox>
+            <ImageBox key={text}>
               <img
                 src={`/images/large/horizontal-${i + 1}.png`}
                 alt={`technology-${i + 1}`}

@@ -15,10 +15,13 @@ export const Section2 = () => {
         if (entry.isIntersecting) {
           // 요소가 뷰포트에 나타난 경우
           setIsInViewport(true);
-        } else {
-          // 요소가 뷰포트를 벗어난 경우
-          setIsInViewport(false);
+          observer.unobserve(entry.target);
         }
+
+        // else {
+        //   // 요소가 뷰포트를 벗어난 경우
+        //   setIsInViewport(false);
+        // }
       });
     };
 

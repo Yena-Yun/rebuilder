@@ -1,69 +1,48 @@
-import styled, { keyframes } from 'styled-components';
-import { useIntersectionObserver } from '../../../hooks/useIntersectionObserver';
+import styled from 'styled-components';
+import { AnimationContainer } from './AnimationContainer';
+import { WORD_LIST } from './constants';
 
 export const Section2 = () => {
-  const { scrollRef, isInViewport } = useIntersectionObserver({
-    rootMargin: '500px',
-  });
-
   return (
     <Container>
       <InnerContainer>
         <FlexColumn>
           <FlexBetween>
             <div></div>
-            <WordContainer>
-              <>
-                <ValuableBox
-                  ref={scrollRef}
-                  className={isInViewport ? 'frame-in' : ''}
+            <FlexColumn>
+              {WORD_LIST.map(({ id, capital, restWord }) => (
+                <AnimationContainer
+                  key={id}
+                  delay={
+                    id === 0
+                      ? 0.5
+                      : id === 1
+                      ? 1
+                      : id === 2
+                      ? 1.5
+                      : id === 3
+                      ? 2
+                      : 0
+                  }
                 >
                   <Word>
-                    <span>V</span>
-                    aluable
+                    <span className='capital'>{capital}</span>
+                    {restWord}
                   </Word>
-                </ValuableBox>
-                <RareBox
-                  ref={scrollRef}
-                  className={isInViewport ? 'frame-in' : ''}
-                >
-                  <Word>
-                    <span>R</span>
-                    are
-                  </Word>
-                </RareBox>
-                <InimitableBox
-                  ref={scrollRef}
-                  className={isInViewport ? 'frame-in' : ''}
-                >
-                  <Word>
-                    <span>I</span>
-                    nimitable
-                  </Word>
-                </InimitableBox>
-                <SubstitutableBox
-                  ref={scrollRef}
-                  className={isInViewport ? 'frame-in' : ''}
-                >
-                  <Word>
-                    <span>N</span>
-                    on-substitutable
-                  </Word>
-                </SubstitutableBox>
-              </>
-            </WordContainer>
+                </AnimationContainer>
+              ))}
+            </FlexColumn>
             <div></div>
           </FlexBetween>
+        </FlexColumn>
 
-          <SentenceContainer
-            ref={scrollRef}
-            className={isInViewport ? 'frame-in' : ''}
-          >
-            <span>
+        <AnimationContainer delay={2.5}>
+          <Intro>
+            <span className='intro-sentence'>
               VRIN은 대체 불가능한 차세대 3D 비전 AI로 발전하고 있습니다.
             </span>
-          </SentenceContainer>
-        </FlexColumn>
+          </Intro>
+        </AnimationContainer>
       </InnerContainer>
     </Container>
   );
@@ -94,59 +73,6 @@ const FlexBetween = styled.div`
   justify-content: space-between;
 `;
 
-const easeinout = keyframes`
-  0% {
-      opacity: 0;
-      transform: translate3d(0, 50px, 0);
-    }
-
-    100% {
-      opacity: 1;
-      transform: translateZ(0);
-    }
-`;
-
-const WordContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const ValuableBox = styled.div`
-  opacity: 0;
-  margin-bottom: 4.6px;
-
-  &.frame-in {
-    animation: 1s ease-in-out 0.5s 1 normal forwards running ${easeinout};
-  }
-`;
-
-const RareBox = styled.div`
-  opacity: 0;
-  margin-bottom: 4.6px;
-
-  &.frame-in {
-    animation: 1s ease-in-out 1s 1 normal forwards running ${easeinout};
-  }
-`;
-
-const InimitableBox = styled.div`
-  opacity: 0;
-  margin-bottom: 4.6px;
-
-  &.frame-in {
-    animation: 1s ease-in-out 1.5s 1 normal forwards running ${easeinout};
-  }
-`;
-
-const SubstitutableBox = styled.div`
-  opacity: 0;
-  margin-bottom: 4.6px;
-
-  &.frame-in {
-    animation: 1s ease-in-out 2s 1 normal forwards running ${easeinout};
-  }
-`;
-
 const Word = styled.span`
   color: rgb(255, 255, 255);
   font-size: 5.06rem;
@@ -154,22 +80,17 @@ const Word = styled.span`
   line-height: 138%;
   text-align: center;
 
-  & span {
+  & .capital {
     font-weight: 700;
     font-size: 6.34rem;
   }
 `;
 
-const SentenceContainer = styled.div`
-  opacity: 0;
+const Intro = styled.div`
   margin-top: 204px;
   text-align: center;
 
-  &.frame-in {
-    animation: 1s ease-in-out 2.5s 1 normal forwards running ${easeinout};
-  }
-
-  & span {
+  & .intro-sentence {
     color: rgb(255, 255, 255);
     font-size: 3.6rem;
     font-weight: 500;

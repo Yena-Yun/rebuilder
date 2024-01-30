@@ -37,5 +37,6 @@ export const useIntersectionObserver = ({ rootMargin }: IntersectionProps) => {
     };
   }, []);
 
+  // ref와 뷰포트 안에 있는지 여부(isInViewport) 반환
   return { scrollRef, isInViewport };
 };

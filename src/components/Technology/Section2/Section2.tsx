@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import styled, { css, keyframes } from 'styled-components';
-import { WORD_LIST } from './constants';
+import styled, { keyframes } from 'styled-components';
 
 export const Section2 = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -12,22 +11,17 @@ export const Section2 = () => {
 
     const callback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
+        // 요소가 뷰포트에 나타난 경우
         if (entry.isIntersecting) {
-          // 요소가 뷰포트에 나타난 경우
           setIsInViewport(true);
           observer.unobserve(entry.target);
         }
-
-        // else {
-        //   // 요소가 뷰포트를 벗어난 경우
-        //   setIsInViewport(false);
-        // }
       });
     };
 
     const observer = new IntersectionObserver(callback, {
       root: null,
-      rootMargin: '0px',
+      rootMargin: '400px',
       threshold: 0,
     });
 
@@ -46,23 +40,53 @@ export const Section2 = () => {
         <FlexColumn>
           <FlexBetween>
             <div></div>
-            <WordContainer
-              ref={scrollRef}
-              className={isInViewport ? 'frame-in' : ''}
-            >
-              {WORD_LIST.map(({ id, fullWord, capital, restWord }) => (
-                <WordBox key={id} $fullWord={fullWord}>
+            <WordContainer>
+              <>
+                <ValuableBox
+                  ref={scrollRef}
+                  className={isInViewport ? 'frame-in' : ''}
+                >
                   <Word>
-                    <span>{capital}</span>
-                    {restWord}
+                    <span>V</span>
+                    aluable
                   </Word>
-                </WordBox>
-              ))}
+                </ValuableBox>
+                <RareBox
+                  ref={scrollRef}
+                  className={isInViewport ? 'frame-in' : ''}
+                >
+                  <Word>
+                    <span>R</span>
+                    are
+                  </Word>
+                </RareBox>
+                <InimitableBox
+                  ref={scrollRef}
+                  className={isInViewport ? 'frame-in' : ''}
+                >
+                  <Word>
+                    <span>I</span>
+                    nimitable
+                  </Word>
+                </InimitableBox>
+                <SubstitutableBox
+                  ref={scrollRef}
+                  className={isInViewport ? 'frame-in' : ''}
+                >
+                  <Word>
+                    <span>N</span>
+                    on-substitutable
+                  </Word>
+                </SubstitutableBox>
+              </>
             </WordContainer>
             <div></div>
           </FlexBetween>
 
-          <SentenceContainer>
+          <SentenceContainer
+            ref={scrollRef}
+            className={isInViewport ? 'frame-in' : ''}
+          >
             <span>
               VRIN은 대체 불가능한 차세대 3D 비전 AI로 발전하고 있습니다.
             </span>
@@ -113,32 +137,42 @@ const easeinout = keyframes`
 const WordContainer = styled.div`
   display: flex;
   flex-direction: column;
-
-  &.frame-in {
-    animation: ${easeinout} 2s forwards;
-  }
 `;
 
-const WordBox = styled.div<{ $fullWord: string }>`
+const ValuableBox = styled.div`
   opacity: 0;
   margin-bottom: 4.6px;
 
-  ${({ $fullWord }) =>
-    $fullWord === 'Valuable'
-      ? css`
-          animation: 1s ease-in-out 0.5s 1 normal forwards running ${easeinout};
-        `
-      : $fullWord === 'Rare'
-      ? css`
-          animation: 1s ease-in-out 1s 1 normal forwards running ${easeinout};
-        `
-      : $fullWord === 'Inimitable'
-      ? css`
-          animation: 1s ease-in-out 1.5s 1 normal forwards running ${easeinout};
-        `
-      : css`
-          animation: 1s ease-in-out 2s 1 normal forwards running ${easeinout};
-        `};
+  &.frame-in {
+    animation: 1s ease-in-out 0.5s 1 normal forwards running ${easeinout};
+  }
+`;
+
+const RareBox = styled.div`
+  opacity: 0;
+  margin-bottom: 4.6px;
+
+  &.frame-in {
+    animation: 1s ease-in-out 1s 1 normal forwards running ${easeinout};
+  }
+`;
+
+const InimitableBox = styled.div`
+  opacity: 0;
+  margin-bottom: 4.6px;
+
+  &.frame-in {
+    animation: 1s ease-in-out 1.5s 1 normal forwards running ${easeinout};
+  }
+`;
+
+const SubstitutableBox = styled.div`
+  opacity: 0;
+  margin-bottom: 4.6px;
+
+  &.frame-in {
+    animation: 1s ease-in-out 2s 1 normal forwards running ${easeinout};
+  }
 `;
 
 const Word = styled.span`
@@ -155,10 +189,13 @@ const Word = styled.span`
 `;
 
 const SentenceContainer = styled.div`
-  animation: 1s ease-in-out 2.5s 1 normal forwards running ${easeinout};
   opacity: 0;
   margin-top: 204px;
   text-align: center;
+
+  &.frame-in {
+    animation: 1s ease-in-out 2.5s 1 normal forwards running ${easeinout};
+  }
 
   & span {
     color: rgb(255, 255, 255);

@@ -1,19 +1,23 @@
 import styled from 'styled-components';
-import { AnimationContainer } from './AnimationContainer';
+import { useIntersectionObserver } from '../../../hooks/useIntersectionObserver';
 import { WORD_LIST } from './constants';
 
 export const Section2 = () => {
+  const { scrollRef, isInViewport } = useIntersectionObserver({
+    rootMargin: '0px',
+  });
+
   return (
     <Container>
-      <InnerContainer>
+      <InnerContainer ref={scrollRef}>
         <FlexColumn>
           <FlexBetween>
             <div></div>
             <FlexColumn>
               {WORD_LIST.map(({ id, capital, restWord }) => (
-                <AnimationContainer
-                  key={id}
-                  delay={
+                <WordBox
+                  className={isInViewport ? 'frame-in' : ''}
+                  $delay={
                     id === 0
                       ? 0.5
                       : id === 1
@@ -29,20 +33,18 @@ export const Section2 = () => {
                     <span className='capital'>{capital}</span>
                     {restWord}
                   </Word>
-                </AnimationContainer>
+                </WordBox>
               ))}
             </FlexColumn>
             <div></div>
           </FlexBetween>
         </FlexColumn>
 
-        <AnimationContainer delay={2.5}>
-          <Intro>
-            <span className='intro-sentence'>
-              VRIN은 대체 불가능한 차세대 3D 비전 AI로 발전하고 있습니다.
-            </span>
-          </Intro>
-        </AnimationContainer>
+        <Intro className={isInViewport ? 'frame-in' : ''}>
+          <span>
+            VRIN은 대체 불가능한 차세대 3D 비전 AI로 발전하고 있습니다.
+          </span>
+        </Intro>
       </InnerContainer>
     </Container>
   );
@@ -73,6 +75,28 @@ const FlexBetween = styled.div`
   justify-content: space-between;
 `;
 
+const WordBox = styled.div<{ $delay: number }>`
+  opacity: 0;
+  margin-bottom: 4.6px;
+
+  &.frame-in {
+    animation: ${({ $delay }) =>
+      `1s ease-in-out ${$delay}s 1 normal forwards running easeInOut`};
+
+    @keyframes easeInOut {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 50px, 0);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateZ(0);
+      }
+    }
+  }
+`;
+
 const Word = styled.span`
   color: rgb(255, 255, 255);
   font-size: 5.06rem;
@@ -87,15 +111,32 @@ const Word = styled.span`
 `;
 
 const Intro = styled.div`
+  opacity: 0;
   margin-top: 204px;
   text-align: center;
 
-  & .intro-sentence {
+  & span {
     color: rgb(255, 255, 255);
     font-size: 3.6rem;
     font-weight: 500;
     line-height: 138%;
     text-align: center;
     white-space: pre-wrap;
+  }
+
+  &.frame-in {
+    animation: 1s ease-in-out 2.5s 1 normal forwards running easeInOut;
+
+    @keyframes easeInOut {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 50px, 0);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateZ(0);
+      }
+    }
   }
 `;

@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
+const VIDEO_SOURCE = '/videos/pc/tech_video1_pc.mp4';
+const VIDEO_TYPE = 'video/mp4';
+
 export const Section1 = () => {
   return (
     <Container>
       <IntroVideo>
         <VideoContainer autoPlay muted playsInline>
-          <source src='/videos/pc/tech_video1_pc.mp4' type='video/mp4' />
+          <source src={VIDEO_SOURCE} type={VIDEO_TYPE} />
         </VideoContainer>
       </IntroVideo>
 

@@ -1,12 +1,63 @@
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 const VIDEO_SOURCE = '/videos/pc/tech_video2_pc.mp4';
 const VIDEO_TYPE = 'video/mp4';
 
 export const Section4 = () => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [backgroundStyle, setBackgroundStyle] = useState('beforeIntersect');
+
+  useEffect(() => {
+    // 요소가 아직 준비되지 않은 경우 중단
+    if (!containerRef.current) return;
+
+    const callback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(
+        ({ isIntersecting, intersectionRatio, boundingClientRect }) => {
+          if (
+            !isIntersecting &&
+            intersectionRatio < 0.5 &&
+            boundingClientRect.top > 0
+          ) {
+            setBackgroundStyle('beforeIntersect');
+          } else if (
+            isIntersecting &&
+            intersectionRatio === 0.5 &&
+            boundingClientRect.top < 0
+          ) {
+            setBackgroundStyle('isIntersecting');
+          } else if (
+            !isIntersecting &&
+            intersectionRatio < 0.5 &&
+            boundingClientRect.top < 0
+          ) {
+            setBackgroundStyle('afterIntersect');
+          }
+        }
+      );
+    };
+
+    const option = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5,
+    };
+
+    const observer = new IntersectionObserver(callback, option);
+
+    // 요소 관찰 시작
+    observer.observe(containerRef.current);
+
+    // 컴포넌트가 언마운트되면 관찰 중단
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <Container>
-      <BackgroundVideo>
+    <Container ref={containerRef}>
+      <BackgroundVideo className={backgroundStyle}>
         <VideoContainer loop playsInline autoPlay>
           <source src={VIDEO_SOURCE} type={VIDEO_TYPE}></source>
         </VideoContainer>
@@ -50,11 +101,27 @@ const Container = styled.div`
 `;
 
 const BackgroundVideo = styled.div`
-  position: absolute;
-  top: 0;
-  bottom: unset;
+  position: relative;
   width: 100%;
   height: auto;
+
+  &.beforeIntersect {
+    position: absolute;
+    top: 0;
+    bottom: unset;
+  }
+
+  &.isIntersecting {
+    position: fixed;
+    top: 0;
+    bottom: unset;
+  }
+
+  &.afterIntersect {
+    position: absolute;
+    top: unset;
+    bottom: 0;
+  }
 `;
 
 const VideoContainer = styled.video`

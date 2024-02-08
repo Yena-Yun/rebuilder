@@ -13,29 +13,21 @@ export const Section4 = () => {
     if (!containerRef.current) return;
 
     const callback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach(
-        ({ isIntersecting, intersectionRatio, boundingClientRect }) => {
-          if (
-            !isIntersecting &&
-            intersectionRatio < 0.5 &&
-            boundingClientRect.top > 0
-          ) {
-            setBackgroundStyle('beforeIntersect');
-          } else if (
-            isIntersecting &&
-            intersectionRatio === 0.5 &&
-            boundingClientRect.top < 0
-          ) {
+      entries.forEach(({ isIntersecting, boundingClientRect }) => {
+        if (isIntersecting) {
+          if (boundingClientRect.top < 0) {
             setBackgroundStyle('isIntersecting');
-          } else if (
-            !isIntersecting &&
-            intersectionRatio < 0.5 &&
-            boundingClientRect.top < 0
-          ) {
+          }
+        }
+
+        if (!isIntersecting) {
+          if (boundingClientRect.top > 0) {
+            setBackgroundStyle('beforeIntersect');
+          } else {
             setBackgroundStyle('afterIntersect');
           }
         }
-      );
+      });
     };
 
     const option = {
@@ -46,10 +38,8 @@ export const Section4 = () => {
 
     const observer = new IntersectionObserver(callback, option);
 
-    // 요소 관찰 시작
     observer.observe(containerRef.current);
 
-    // 컴포넌트가 언마운트되면 관찰 중단
     return () => {
       observer.disconnect();
     };

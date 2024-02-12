@@ -16,6 +16,7 @@ export const Section2 = () => {
             <FlexColumn>
               {WORD_LIST.map(({ id, capital, restWord }) => (
                 <WordBox
+                  key={id}
                   className={isInViewport ? 'frame-in' : ''}
                   $delay={
                     id === 0

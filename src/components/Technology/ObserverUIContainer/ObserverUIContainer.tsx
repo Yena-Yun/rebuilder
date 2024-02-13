@@ -7,25 +7,35 @@ interface ObserverUIProps {
     heading: string[];
     paragraph: string[];
   };
+  hasBackground?: boolean;
 }
 
 export const ObserverUIContainer = ({
   videoSource,
   textGroup,
+  hasBackground,
 }: ObserverUIProps) => {
   const { containerRef, backgroundStyle } = useIntersectionObserver();
 
   const VIDEO_SOURCE = `/videos/${videoSource}.mp4`;
-  const VIDEO_TYPE = 'video/mp4';
 
   const { heading, paragraph } = textGroup;
 
   return (
     <Container ref={containerRef}>
       <BackgroundVideo className={backgroundStyle}>
-        <VideoContainer loop playsInline autoPlay>
-          <source src={VIDEO_SOURCE} type={VIDEO_TYPE}></source>
-        </VideoContainer>
+        {hasBackground && (
+          <BackgroundOverlay src='/images/overlay.png' alt='video-background' />
+        )}
+        <VideoContainer
+          width='100%'
+          height='100%'
+          loop
+          autoPlay
+          playsInline
+          src={VIDEO_SOURCE}
+          className={hasBackground ? 'inner-video' : ''}
+        ></VideoContainer>
       </BackgroundVideo>
 
       <TextContainer>
@@ -47,6 +57,13 @@ const Container = styled.div`
   width: 100%;
   height: 200vh;
   background-color: rgb(18, 20, 23);
+`;
+
+const BackgroundOverlay = styled.img`
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  object-fit: cover;
 `;
 
 const BackgroundVideo = styled.div`
@@ -77,6 +94,14 @@ const VideoContainer = styled.video`
   width: 100%;
   min-height: 100vh;
   object-fit: cover;
+
+  &.inner-video {
+    position: absolute;
+    top: 25vh;
+    right: 10vw;
+    max-width: 952px;
+    height: auto;
+  }
 `;
 
 const TextContainer = styled.div`

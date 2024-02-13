@@ -6,6 +6,7 @@ export const Section7 = () => {
     <ObserverUIContainer
       videoSource='pc/tech_video5_pc'
       textGroup={TEXT_GROUP}
+      hasBackground
     />
   );
 };

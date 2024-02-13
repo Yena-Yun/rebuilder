@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Technology } from './pages/Technology';
 import { ScrollToTop } from './components/ScrollToTop/ScrollToTop';
 import { Header } from './components/Header/Header';
+import { Footer } from './components/Footer/Footer';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path='/' element={<Navigate replace to='/technology' />} />
         <Route path='/technology' element={<Technology />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

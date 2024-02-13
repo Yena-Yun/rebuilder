@@ -33,6 +33,7 @@ export const ObserverUIContainer = ({
           loop
           autoPlay
           playsInline
+          muted
           src={VIDEO_SOURCE}
           className={hasBackground ? 'inner-video' : ''}
         ></VideoContainer>

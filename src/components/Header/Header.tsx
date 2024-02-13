@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { ReactComponent as LogoImage } from '../../assets/svgs/logo.svg';
-import { ReactComponent as LanguageImage } from '../../assets/svgs/language.svg';
+import { ReactComponent as LogoImage } from '../../assets/svgs/header/logo.svg';
+import { ReactComponent as LanguageImage } from '../../assets/svgs/header/language.svg';
 
 export const Header = () => {
   const [hoveredNavId, setHoveredNavId] = useState('');

@@ -100,8 +100,9 @@ const VideoContainer = styled.video`
     position: absolute;
     top: 25vh;
     right: 10vw;
-    max-width: 952px;
     height: auto;
+    max-width: 952px;
+    min-height: 75vh;
   }
 `;
 

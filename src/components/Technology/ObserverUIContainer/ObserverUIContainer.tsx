@@ -92,7 +92,6 @@ const BackgroundVideo = styled.div`
 `;
 
 const VideoContainer = styled.video`
-  width: 100%;
   min-height: 100vh;
   object-fit: cover;
 
@@ -113,11 +112,13 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
   width: auto;
   padding: 32px 50px;
   background-color: rgba(40, 45, 50, 0.3);
   border-radius: 10px;
   transform: translate(0px, -50%);
+  backdrop-filter: blur(6px);
   z-index: 10;
 
   &:hover {
@@ -139,14 +140,6 @@ const Heading = styled.span`
 `;
 
 const Paragraph = styled.span`
-  font-size: 2.4rem;
-  font-weight: 400;
-  line-height: 138%;
-  color: rgb(255, 255, 255);
-  white-space: pre-wrap;
-`;
-
-const ParagraphDouble = styled.span`
   font-size: 2.4rem;
   font-weight: 400;
   line-height: 138%;

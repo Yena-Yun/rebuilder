@@ -1,21 +1,21 @@
 export const WORD_LIST = [
   {
-    id: 0,
+    delay: '0.5',
     capital: 'V',
     restWord: 'aluable',
   },
   {
-    id: 1,
+    delay: '1',
     capital: 'R',
     restWord: 'are',
   },
   {
-    id: 2,
+    delay: '1.5',
     capital: 'I',
     restWord: 'nimitable',
   },
   {
-    id: 3,
+    delay: '2',
     capital: 'N',
     restWord: 'on - substitutable',
   },

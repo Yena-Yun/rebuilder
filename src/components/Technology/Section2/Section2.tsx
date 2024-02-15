@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { useIntersectionObserver } from '../../../hooks/useIntersectionObserver';
+import { useFadeInObserver } from './hooks/useFadeInObserver';
 import { WORD_LIST } from './constants';
 
 export const Section2 = () => {
-  const { scrollRef, isInViewport } = useIntersectionObserver({
+  const { scrollRef, isInViewport } = useFadeInObserver({
     rootMargin: '0px',
   });
 
@@ -14,21 +14,11 @@ export const Section2 = () => {
           <FlexBetween>
             <div></div>
             <FlexColumn>
-              {WORD_LIST.map(({ id, capital, restWord }) => (
+              {WORD_LIST.map(({ delay, capital, restWord }) => (
                 <WordBox
-                  key={id}
+                  key={delay}
                   className={isInViewport ? 'frame-in' : ''}
-                  $delay={
-                    id === 0
-                      ? 0.5
-                      : id === 1
-                      ? 1
-                      : id === 2
-                      ? 1.5
-                      : id === 3
-                      ? 2
-                      : 0
-                  }
+                  $delay={delay}
                 >
                   <Word>
                     <span className='capital'>{capital}</span>
@@ -56,7 +46,6 @@ const Container = styled.div`
   width: 100%;
   height: 90vh;
   background: rgb(0, 0, 0);
-  /* overflow: hidden; */
 `;
 
 const InnerContainer = styled.div`
@@ -76,7 +65,7 @@ const FlexBetween = styled.div`
   justify-content: space-between;
 `;
 
-const WordBox = styled.div<{ $delay: number }>`
+const WordBox = styled.div<{ $delay: string }>`
   opacity: 0;
   margin-bottom: 4.6px;
 

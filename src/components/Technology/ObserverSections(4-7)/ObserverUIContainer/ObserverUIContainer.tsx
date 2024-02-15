@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useIntersectionObserver } from './hooks/useBackgroundObserver/useBackgroundObserver';
+import { useBackgroundObserver } from './hooks/useBackgroundObserver';
 
 interface ObserverUIProps {
   videoSource: string;
@@ -15,17 +15,18 @@ export const ObserverUIContainer = ({
   textGroup,
   hasBackground,
 }: ObserverUIProps) => {
-  const { containerRef, backgroundStyle } = useIntersectionObserver();
+  const { containerRef, backgroundStatus } = useBackgroundObserver();
 
   const VIDEO_SOURCE = `/videos/${videoSource}.mp4`;
+  const BACKGROUND_SOURCE = '/images/overlay.png';
 
   const { heading, paragraph } = textGroup;
 
   return (
     <Container ref={containerRef}>
-      <BackgroundVideo className={backgroundStyle}>
+      <BackgroundVideo className={backgroundStatus}>
         {hasBackground && (
-          <BackgroundOverlay src='/images/overlay.png' alt='video-background' />
+          <BackgroundOverlay src={BACKGROUND_SOURCE} alt='video-background' />
         )}
         <VideoContainer
           width='100%'

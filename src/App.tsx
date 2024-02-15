@@ -1,6 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Technology } from './pages/Technology';
-import { ScrollToTop } from './components/helpers/ScrollToTop/ScrollToTop';
+import { ScrollToTop } from './components/helpers/ScrollToTop';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 

@@ -228,7 +228,7 @@ const LanguageModalSpace = styled.div<{
 }>`
   position: absolute;
   top: 90%;
-  right: -80%;
+  right: -85%;
   display: ${({ $isHoverLanguage }) => ($isHoverLanguage ? 'block' : 'none')};
   width: 80px;
   height: 30px;
@@ -238,14 +238,14 @@ const LanguageModalSpace = styled.div<{
 const LanguageModal = styled.ul`
   position: absolute;
   top: 20px;
-  right: 0;
+  right: -0.5px;
   width: 100%;
   padding: 12px 0;
   background-color: rgb(255, 255, 255);
   border-radius: 4px;
-  animation: fadein 0.2s;
+  animation: fade-in 0.2s;
 
-  @keyframes fadein {
+  @keyframes fade-in {
     from {
       opacity: 0;
     }

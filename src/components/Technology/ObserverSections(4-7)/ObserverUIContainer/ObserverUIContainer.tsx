@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useIntersectionObserver } from '../hooks/useBackgroundObserver/useBackgroundObserver';
+import { useIntersectionObserver } from './hooks/useBackgroundObserver/useBackgroundObserver';
 
 interface ObserverUIProps {
   videoSource: string;

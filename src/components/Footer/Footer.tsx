@@ -5,7 +5,7 @@ import {
   LinkedinImage,
   NaverBlogImage,
   TistoryImage,
-} from './assets/SNSImages';
+} from './images/SNSImages';
 
 export const Footer = () => {
   const navigate = useNavigate();

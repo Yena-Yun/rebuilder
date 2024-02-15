@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { ReactComponent as LogoImage } from '../../assets/svgs/header/logo.svg';
-import { ReactComponent as LanguageImage } from '../../assets/svgs/header/language.svg';
+import { LogoImage, LanguageImage } from './images/HeaderIcons';
 
 export const Header = () => {
   const [hoveredNavId, setHoveredNavId] = useState('');
@@ -18,7 +17,7 @@ export const Header = () => {
               href='https://rebuilderai.com'
               aria-label='Go Back to HomePage'
             >
-              <LogoImage />
+              <img src={LogoImage} alt='RebuilderAI-logo' />
             </LogoLink>
 
             <Navigation>

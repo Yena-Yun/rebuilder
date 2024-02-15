@@ -60,7 +60,7 @@ export const Header = () => {
             >
               <LanguageImage />
               {isHoverLanguage && (
-                <LanguageModalSpace $isHoverLanguage={isHoverLanguage}>
+                <ModalTopMargin $isHoverLanguage={isHoverLanguage}>
                   <LanguageModal>
                     {['KOR', 'ENG'].map((language) => (
                       <LanguageListItem
@@ -72,7 +72,7 @@ export const Header = () => {
                       </LanguageListItem>
                     ))}
                   </LanguageModal>
-                </LanguageModalSpace>
+                </ModalTopMargin>
               )}
             </LanguageSelector>
           </UpperContainer>
@@ -222,7 +222,7 @@ const LanguageSelector = styled.div`
   }
 `;
 
-const LanguageModalSpace = styled.div<{
+const ModalTopMargin = styled.div<{
   $isHoverLanguage: boolean;
 }>`
   position: absolute;

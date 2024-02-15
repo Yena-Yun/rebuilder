@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 
-export const useIntersectionObserver = () => {
+export const useBackgroundObserver = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [backgroundStyle, setBackgroundStyle] = useState('beforeIntersect');
+  const [backgroundStatus, setBackgroundStatus] = useState('beforeIntersect');
 
   useEffect(() => {
     // 관찰할 요소가 아직 준비되지 않은 경우 중단
@@ -12,17 +12,17 @@ export const useIntersectionObserver = () => {
       entries.forEach(({ isIntersecting, boundingClientRect }) => {
         if (isIntersecting) {
           if (boundingClientRect.top < 0) {
-            setBackgroundStyle('isIntersecting');
+            setBackgroundStatus('isIntersecting');
           }
         }
 
         if (!isIntersecting) {
           if (boundingClientRect.top > 0) {
-            setBackgroundStyle('beforeIntersect');
+            setBackgroundStatus('beforeIntersect');
           }
 
           if (boundingClientRect.top <= 0) {
-            setBackgroundStyle('afterIntersect');
+            setBackgroundStatus('afterIntersect');
           }
         }
       });
@@ -43,5 +43,5 @@ export const useIntersectionObserver = () => {
     };
   }, []);
 
-  return { containerRef, backgroundStyle };
+  return { containerRef, backgroundStatus };
 };

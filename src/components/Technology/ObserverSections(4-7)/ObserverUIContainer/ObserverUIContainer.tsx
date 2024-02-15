@@ -42,12 +42,12 @@ export const ObserverUIContainer = ({
 
       <TextContainer>
         <FlexColumn>
-          {heading.map((text) => (
-            <Heading key={text}>{text}</Heading>
+          {heading.map((text, id) => (
+            <Heading key={id}>{text}</Heading>
           ))}
         </FlexColumn>
-        {paragraph.map((text) => (
-          <Paragraph key={text}>{text}</Paragraph>
+        {paragraph.map((text, id) => (
+          <Paragraph key={id}>{text}</Paragraph>
         ))}
       </TextContainer>
     </Container>

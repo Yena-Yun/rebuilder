@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { LogoImage, LanguageImage } from './images/HeaderIcons';
 
@@ -13,12 +14,13 @@ export const Header = () => {
       <Container>
         <InnerContainer id='header' $isHoverTechnology={isHoverTechnology}>
           <UpperContainer>
-            <LogoLink
-              href='https://rebuilderai.com'
+            <Link
+              to='https://rebuilderai.com'
+              target='_blank'
               aria-label='Go Back to HomePage'
             >
               <img src={LogoImage} alt='RebuilderAI-logo' />
-            </LogoLink>
+            </Link>
 
             <Navigation>
               {['Service', 'Technology', 'About', 'Contact'].map((nav) => {
@@ -126,8 +128,6 @@ const UpperContainer = styled.div`
   align-items: center;
   padding-top: 33px;
 `;
-
-const LogoLink = styled.a``;
 
 const Navigation = styled.div`
   display: flex;

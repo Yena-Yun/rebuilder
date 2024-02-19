@@ -1,26 +1,28 @@
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useBackgroundObserver } from './hooks/useBackgroundObserver';
 
 interface ObserverUIProps {
   videoSource: string;
-  textGroup: {
-    heading: string[];
-    paragraph: string[];
+  content: {
+    head: Object;
+    body: Object;
   };
+  order?: number;
   hasBackground?: boolean;
 }
 
 export const ObserverUIContainer = ({
   videoSource,
-  textGroup,
+  content,
+  order,
   hasBackground,
 }: ObserverUIProps) => {
   const { containerRef, backgroundStatus } = useBackgroundObserver();
+  const { t } = useTranslation();
 
   const VIDEO_SOURCE = `/videos/${videoSource}.mp4`;
   const BACKGROUND_SOURCE = '/images/overlay.png';
-
-  const { heading, paragraph } = textGroup;
 
   return (
     <Container ref={containerRef}>
@@ -37,17 +39,21 @@ export const ObserverUIContainer = ({
           muted
           src={VIDEO_SOURCE}
           className={hasBackground ? 'inner-video' : ''}
-        ></VideoContainer>
+        />
       </BackgroundVideo>
 
       <TextContainer>
         <FlexColumn>
-          {heading.map((text, id) => (
-            <Heading key={id}>{text}</Heading>
+          {Object.keys(content.head).map((_, id) => (
+            <Heading key={id}>
+              {t(`section${order}.head.line${id + 1}`)}
+            </Heading>
           ))}
         </FlexColumn>
-        {paragraph.map((text, id) => (
-          <Paragraph key={id}>{text}</Paragraph>
+        {Object.keys(content.body).map((_, id) => (
+          <Paragraph key={id}>
+            {t(`section${order}.body.line${id + 1}`)}
+          </Paragraph>
         ))}
       </TextContainer>
     </Container>

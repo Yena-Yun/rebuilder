@@ -1,11 +1,15 @@
 import { ObserverUIContainer } from '../ObserverUIContainer/ObserverUIContainer';
-import { TEXT_GROUP } from './constants/textGroup';
+import translation from '../../../../locales/en/sentences.json';
 
 export const Section4 = () => {
   return (
     <ObserverUIContainer
       videoSource='pc/tech_video2_pc'
-      textGroup={TEXT_GROUP}
+      order={4}
+      content={{
+        head: translation.section4.head,
+        body: translation.section4.body,
+      }}
     />
   );
 };

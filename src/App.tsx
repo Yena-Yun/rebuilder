@@ -3,6 +3,7 @@ import { Technology } from './pages/Technology';
 import { ScrollToTop } from './components/helpers/ScrollToTop';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
+import './locales/i18n';
 
 function App() {
   return (

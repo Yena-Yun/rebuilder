@@ -8,11 +8,12 @@
     "line2": "next-generation 3D vision AI."
   },
   "section3": {
-    "title1": "Light-Source Prediction",
-    "title2": "Surface Material Estimation",
-    "title3": "High-Level Scanning Precision",
-    "title4": "Spatial Volumetric Rendering"
+    "caption1": "Light-Source Prediction",
+    "caption2": "Surface Material Estimation",
+    "caption3": "High-Level Scanning Precision",
+    "caption4": "Spatial Volumetric Rendering"
   },
+
   "section4": {
     "head": {
       "line1": "Light-Source Prediction Technology",
@@ -22,12 +23,16 @@
       "line1": "Inverse Rendering-based ambient light inference technology",
       "line2": "facilitates the removal of reflected light from images, thereby",
       "line3": "enables accurate texture restoration.",
-      "line4": "Reflections caused by ambient light can obscure the original",
-      "line5": "color of an object. Especially for objects with high reflectivity,",
-      "line6": "Scanning the object, our technology, RebuilderAI, captures",
-      "line7": "surface accurately, and removes the model's highlights through patented technology."
+      "line4": " ",
+      "line5": "Reflections caused by ambient light can obscure the original",
+      "line6": "color of an object. Especially for objects with high reflectivity,",
+      "line7": "the spots appear with white highlights, resulting in a color\ndistortion after scanning.",
+      "line8": " ",
+      "line9": "Scanning the object, our technology, RebuilderAI, captures",
+      "line10": "surface accurately, and removes the model's highlights\nthrough patented technology."
     }
   },
+
   "section5": {
     "head": {
       "line1": "Surface Material Estimation",
@@ -38,9 +43,10 @@
       "line1": "Inverse Rendering-based material prediction AI allows us",
       "line2": "to scan for reflection and roughness information.",
       "line3": "(Automatic PBR-texturing)",
-      "line4": "By building a substantial amount of material inference data",
-      "line5": "internally, we can restore the original color of transparent",
-      "line6": "or metallic materials excluding reflected light. We are continually striving to make 3D scanning even more precise."
+      "line4": " ",
+      "line5": "By building a substantial amount of material inference data",
+      "line6": "internally, we can restore the original color of transparent",
+      "line7": "or metallic materials excluding reflected light. We are continually striving to make 3D scanning even more precise."
     }
   },
   "section6": {
@@ -52,8 +58,9 @@
       "line1": "With just video or photo of mobile device, we can restore shapes",
       "line2": "accurately without any expensive commercial 3D ToF scanners.",
       "line3": "(Standard precision within 0.2mm, when applying volatile spray)",
-      "line4": "3D scanning process, which typically took over an hour with",
-      "line5": "existing tools, can now be completed in under three minutes."
+      "line4": " ",
+      "line5": "3D scanning process, which typically took over an hour with",
+      "line6": "existing tools, can now be completed in under three minutes."
     }
   },
   "section7": {
@@ -66,9 +73,10 @@
       "line1": "Using Volumetric rendering technology, you can quickly capture",
       "line2": "space and create drone-like videos or distribute 3D space",
       "line3": "through a web viewer.",
-      "line4": "Areas that cannot be captured with existing 3D models, such as ",
-      "line5": "reflections or lighting that change depending on the viewpoint,",
-      "line6": "can also be captured in 3D through a rendering engine based on view synthesis, allowing for confirmation anytime, anywhere."
+      "line4": " ",
+      "line5": "Areas that cannot be captured with existing 3D models, such as ",
+      "line6": "reflections or lighting that change depending on the viewpoint,",
+      "line7": "can also be captured in 3D through a rendering engine based on view synthesis, allowing for confirmation anytime, anywhere."
     }
   },
   "footer": {

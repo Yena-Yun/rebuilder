@@ -2,12 +2,17 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { LogoImage, LanguageImage } from './images/HeaderIcons';
+import i18n from 'i18next';
 
 export const Header = () => {
   const [hoveredNavId, setHoveredNavId] = useState('');
   const [isHoverTechnology, setIsHoverTechnology] = useState(false);
   const [isHoverLanguage, setIsHoverLanguage] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('KOR');
+
+  const changeLanguage = (language: string) => {
+    i18n.changeLanguage(language);
+  };
 
   return (
     <>
@@ -65,8 +70,11 @@ export const Header = () => {
                     {['KOR', 'ENG'].map((language) => (
                       <LanguageListItem
                         key={language}
-                        onClick={() => setSelectedLanguage(language)}
-                        $isSelected={selectedLanguage === language}
+                        onClick={() => {
+                          changeLanguage(language === 'KOR' ? 'ko' : 'en');
+                          setSelectedLanguage(language);
+                        }}
+                        $isSelectedLanguage={selectedLanguage === language}
                       >
                         {language}
                       </LanguageListItem>
@@ -254,10 +262,10 @@ const LanguageModal = styled.ul`
   }
 `;
 
-const LanguageListItem = styled.li<{ $isSelected: boolean }>`
+const LanguageListItem = styled.li<{ $isSelectedLanguage: boolean }>`
   padding: 10px 0;
-  color: ${({ $isSelected }) =>
-    $isSelected ? 'rgb(0, 0, 0)' : 'rgb(111, 117, 123)'};
+  color: ${({ $isSelectedLanguage }) =>
+    $isSelectedLanguage ? 'rgb(0, 0, 0)' : 'rgb(111, 117, 123)'};
   font-size: 1.7rem;
   font-weight: 500;
   text-align: center;

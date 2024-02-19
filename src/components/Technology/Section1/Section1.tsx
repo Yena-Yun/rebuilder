@@ -1,9 +1,12 @@
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 const VIDEO_SOURCE = '/videos/pc/tech_video1_pc.mp4';
 const VIDEO_TYPE = 'video/mp4';
 
 export const Section1 = () => {
+  const { t } = useTranslation();
+
   return (
     <Container>
       <IntroVideo>
@@ -17,10 +20,10 @@ export const Section1 = () => {
       <ParagraphContainer>
         <ParagraphInnerContainer>
           <ParagraphLine1>
-            <span>휴대폰 카메라 센서 기반의</span>
+            <span>{t('section1.line1')}</span>
           </ParagraphLine1>
           <ParagraphLine2>
-            <span>차세대 3D VISION AI, VRIN</span>
+            <span>{t('section1.line2')}</span>
           </ParagraphLine2>
         </ParagraphInnerContainer>
       </ParagraphContainer>

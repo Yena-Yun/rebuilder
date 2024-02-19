@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useFadeInObserver } from './hooks/useFadeInObserver';
 import { WORD_LIST } from './constants';
 
 export const Section2 = () => {
+  const { t } = useTranslation();
   const { scrollRef, isInViewport } = useFadeInObserver({
     rootMargin: '0px',
   });
@@ -33,7 +35,7 @@ export const Section2 = () => {
 
         <Intro className={isInViewport ? 'frame-in' : ''}>
           <span>
-            VRIN은 대체 불가능한 차세대 3D 비전 AI로 발전하고 있습니다.
+            {t('section2.line1')}&nbsp;{t('section2.line2')}
           </span>
         </Intro>
       </InnerContainer>
@@ -52,6 +54,7 @@ const InnerContainer = styled.div`
   position: absolute;
   left: 50%;
   top: 15%;
+  width: 100%;
   transform: translate(-50%);
 `;
 
@@ -101,8 +104,8 @@ const Word = styled.span`
 `;
 
 const Intro = styled.div`
-  opacity: 0;
   margin-top: 204px;
+  opacity: 0;
   text-align: center;
 
   & span {
@@ -111,7 +114,6 @@ const Intro = styled.div`
     font-weight: 500;
     line-height: 138%;
     text-align: center;
-    white-space: pre-wrap;
   }
 
   &.frame-in {

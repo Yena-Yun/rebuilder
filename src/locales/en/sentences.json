@@ -1,0 +1,94 @@
+{
+  "section1": {
+    "line1": "Mobile Camera Sensors-based",
+    "line2": "Next-Generation 3D VISION AI, VRIN"
+  },
+  "section2": {
+    "line1": "VRIN is evolving into an irreplaceable",
+    "line2": "next-generation 3D vision AI."
+  },
+  "section3": {
+    "title1": "Light-Source Prediction",
+    "title2": "Surface Material Estimation",
+    "title3": "High-Level Scanning Precision",
+    "title4": "Spatial Volumetric Rendering"
+  },
+  "section4": {
+    "head": {
+      "line1": "Light-Source Prediction Technology",
+      "line2": "for Scanning of Metallic Objects"
+    },
+    "body": {
+      "line1": "Inverse Rendering-based ambient light inference technology",
+      "line2": "facilitates the removal of reflected light from images, thereby",
+      "line3": "enables accurate texture restoration.",
+      "line4": "Reflections caused by ambient light can obscure the original",
+      "line5": "color of an object. Especially for objects with high reflectivity,",
+      "line6": "Scanning the object, our technology, RebuilderAI, captures",
+      "line7": "surface accurately, and removes the model's highlights through patented technology."
+    }
+  },
+  "section5": {
+    "head": {
+      "line1": "Surface Material Estimation",
+      "line2": "Technology for PBR Texture",
+      "line3": "Restoration"
+    },
+    "body": {
+      "line1": "Inverse Rendering-based material prediction AI allows us",
+      "line2": "to scan for reflection and roughness information.",
+      "line3": "(Automatic PBR-texturing)",
+      "line4": "By building a substantial amount of material inference data",
+      "line5": "internally, we can restore the original color of transparent",
+      "line6": "or metallic materials excluding reflected light. We are continually striving to make 3D scanning even more precise."
+    }
+  },
+  "section6": {
+    "head": {
+      "line1": "Scanning Precision of",
+      "line2": "Commercial 3D ToF Scanner Level"
+    },
+    "body": {
+      "line1": "With just video or photo of mobile device, we can restore shapes",
+      "line2": "accurately without any expensive commercial 3D ToF scanners.",
+      "line3": "(Standard precision within 0.2mm, when applying volatile spray)",
+      "line4": "3D scanning process, which typically took over an hour with",
+      "line5": "existing tools, can now be completed in under three minutes."
+    }
+  },
+  "section7": {
+    "head": {
+      "line1": "Spatial Volumetric Rendering",
+      "line2": "Technology for High-quality",
+      "line3": "Image Synthesis"
+    },
+    "body": {
+      "line1": "Using Volumetric rendering technology, you can quickly capture",
+      "line2": "space and create drone-like videos or distribute 3D space",
+      "line3": "through a web viewer.",
+      "line4": "Areas that cannot be captured with existing 3D models, such as ",
+      "line5": "reflections or lighting that change depending on the viewpoint,",
+      "line6": "can also be captured in 3D through a rendering engine based on view synthesis, allowing for confirmation anytime, anywhere."
+    }
+  },
+  "footer": {
+    "redirect": {
+      "line1": "Rebuilderai Inc.",
+      "line2": "About Service",
+      "line3": "Contact Us"
+    },
+    "info": {
+      "line1": "Business Number: 483-88-02098 | CEO: Jeonghyeon Kim",
+      "line2": "Hosting Service: Rebuilderai Inc. | Mail-order-sales registration number: 2022-SechoSeoul-0594",
+      "line3": "Address: 13561 NAVER 1784, 95 Jeongjail-ro, Bundang-gu, Seongnam-si, Gyeonggi-do, Republic of Korea",
+      "line4": "Email: contact@rebuilderai.com"
+    },
+    "term": {
+      "line1": "Terms of Service",
+      "line2": "Privacy Policy",
+      "line3": "Use of Data",
+      "line4": "Provide Information to a Third Party",
+      "line5": "Receive Marketing Information"
+    }
+  }
+}

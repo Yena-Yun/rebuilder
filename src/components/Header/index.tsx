@@ -1,16 +1,14 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { useMediaQuery } from 'react-responsive';
-import { MobileHeader } from './MobileHeader';
-import { LargerHeader } from './LargerHeader';
+import { MobileHeader } from './MobileHeader/MobileHeader';
+import { LargerHeader } from './LargerHeader/LargerHeader';
+import { useMedia } from '../../hooks/Query';
 
 export const Header = () => {
   const [isShowDropdown, setIsShowDropdown] = useState(false);
   const [isShowMenu, setIsShowMenu] = useState(false);
 
-  const isTablet = useMediaQuery({
-    query: '(max-width: 768px)',
-  });
+  const { isTablet } = useMedia();
 
   const showDropdown = () => {
     setIsShowDropdown(true);
@@ -65,7 +63,7 @@ const InnerContainer = styled.div<{
   padding: 0 30px;
   transition: all 0.2s ease-in-out 0s;
 
-  @media screen and (max-width: 768px) {
+  @media (max-width: 768px) {
     width: 100%;
     height: ${({ $isShowMenu }) => ($isShowMenu ? '350px' : '64px')};
     padding: 0 60px;

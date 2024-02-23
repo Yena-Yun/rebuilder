@@ -1,7 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Technology } from './pages/Technology';
-import { ScrollToTop } from './components/helpers/ScrollToTop';
-import { Header } from './components/Header/Header';
+import { ScrollToTop } from './hooks/ScrollToTop';
+import { Header } from './components/Header';
 import { Footer } from './components/Footer/Footer';
 import './locales/i18n';
 

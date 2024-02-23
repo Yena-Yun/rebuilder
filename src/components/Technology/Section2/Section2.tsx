@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useFadeInObserver } from './hooks/useFadeInObserver';
 import { WORD_LIST } from './constants';
+import { FlexColumn, FlexBetween } from '../../../styles/flex';
 
 export const Section2 = () => {
   const { t } = useTranslation();
@@ -33,11 +34,11 @@ export const Section2 = () => {
           </FlexBetween>
         </FlexColumn>
 
-        <Intro className={isInViewport ? 'frame-in' : ''}>
+        <OneLine className={isInViewport ? 'frame-in' : ''}>
           <span>
             {t('section2.line1')}&nbsp;{t('section2.line2')}
           </span>
-        </Intro>
+        </OneLine>
       </InnerContainer>
     </Container>
   );
@@ -58,19 +59,21 @@ const InnerContainer = styled.div`
   transform: translate(-50%);
 `;
 
-const FlexColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const FlexBetween = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
 const WordBox = styled.div<{ $delay: string }>`
   opacity: 0;
   margin-bottom: 4.6px;
+
+  @media (max-width: 1280px) {
+    margin-bottom: 6px;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 600px) {
+    margin-bottom: 10px;
+  }
 
   &.frame-in {
     animation: ${({ $delay }) =>
@@ -97,16 +100,59 @@ const Word = styled.span`
   line-height: 138%;
   text-align: center;
 
+  @media (max-width: 1280px) {
+    font-size: 3.8rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2.8rem;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1.6rem;
+  }
+
   & .capital {
-    font-weight: 700;
     font-size: 6.34rem;
+    font-weight: 700;
+
+    @media (max-width: 1280px) {
+      font-size: 4.6rem;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 3.6rem;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 2rem;
+    }
   }
 `;
 
-const Intro = styled.div`
+const OneLine = styled.div`
   margin-top: 204px;
   opacity: 0;
   text-align: center;
+
+  @media (max-width: 1280px) {
+    margin-top: 180px;
+  }
+
+  @media (max-width: 1024px) {
+    width: 500px;
+    white-space: pre-wrap;
+  }
+
+  @media (max-width: 768px) {
+    width: unset;
+    white-space: unset;
+    margin-top: 140px;
+  }
+
+  @media (max-width: 600px) {
+    margin-top: 70px;
+  }
 
   & span {
     color: rgb(255, 255, 255);
@@ -114,6 +160,18 @@ const Intro = styled.div`
     font-weight: 500;
     line-height: 138%;
     text-align: center;
+
+    @media (max-width: 1280px) {
+      font-size: 2.8rem;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 2.2rem;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 1.6rem;
+    }
   }
 
   &.frame-in {

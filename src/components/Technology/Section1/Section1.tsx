@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { FlexColumnCenter } from '../../../styles/flex';
 
 const VIDEO_SOURCE = '/videos/pc/tech_video1_pc.mp4';
 const VIDEO_TYPE = 'video/mp4';
@@ -18,14 +19,14 @@ export const Section1 = () => {
       <MainBackground></MainBackground>
 
       <ParagraphContainer>
-        <ParagraphInnerContainer>
+        <FlexColumnCenter>
           <ParagraphLine1>
             <span>{t('section1.line1')}</span>
           </ParagraphLine1>
           <ParagraphLine2>
             <span>{t('section1.line2')}</span>
           </ParagraphLine2>
-        </ParagraphInnerContainer>
+        </FlexColumnCenter>
       </ParagraphContainer>
     </Container>
   );
@@ -52,6 +53,10 @@ const VideoContainer = styled.video`
   height: 100%;
   padding-top: 95px;
   object-fit: cover;
+
+  @media (max-width: 768px) {
+    padding-top: 65px;
+  }
 `;
 
 const MainBackground = styled.div`
@@ -78,16 +83,10 @@ const ParagraphContainer = styled.div`
   z-index: 200;
 `;
 
-const ParagraphInnerContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
 const ParagraphLine1 = styled.div`
   margin-bottom: 40px;
   opacity: 0;
-  animation: 1s ease-in-out 2.5s 1 normal forwards running easeinout;
+  animation: 1s ease-in-out 2.5s 1 normal forwards running easeInOut;
 
   & span {
     display: block;
@@ -95,9 +94,21 @@ const ParagraphLine1 = styled.div`
     font-size: 4rem;
     font-weight: 500;
     line-height: 138%;
+
+    @media (max-width: 1280px) {
+      font-size: 3.6rem;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 2.8rem;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 1.6rem;
+    }
   }
 
-  @keyframes easeinout {
+  @keyframes easeInOut {
     from {
       opacity: 0;
       transform: translate3d(0, 50px, 0);
@@ -111,7 +122,7 @@ const ParagraphLine1 = styled.div`
 
 const ParagraphLine2 = styled.div`
   opacity: 0;
-  animation: 1s ease-in-out 3s 1 normal forwards running easeinout;
+  animation: 1s ease-in-out 3s 1 normal forwards running easeInOut;
 
   & span {
     display: block;
@@ -119,9 +130,21 @@ const ParagraphLine2 = styled.div`
     font-size: 6rem;
     font-weight: 600;
     line-height: 138%;
+
+    @media (max-width: 1280px) {
+      font-size: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 3.2rem;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 2rem;
+    }
   }
 
-  @keyframes easeinout {
+  @keyframes easeInOut {
     from {
       opacity: 0;
       transform: translate3d(0, 50px, 0);

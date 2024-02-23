@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useBackgroundObserver } from './hooks/useBackgroundObserver';
+import { FlexColumn } from '../../../../styles/flex'
 
 interface ObserverUIProps {
   videoSource: string;
@@ -43,13 +44,13 @@ export const ObserverUIContainer = ({
       </BackgroundVideo>
 
       <TextContainer>
-        <FlexColumn>
+        <HeadingContainer>
           {Object.keys(content.head).map((_, id) => (
             <Heading key={id}>
               {t(`section${order}.head.line${id + 1}`)}
             </Heading>
           ))}
-        </FlexColumn>
+        </HeadingContainer>
         {Object.keys(content.body).map((_, id) => (
           <Paragraph key={id}>
             {t(`section${order}.body.line${id + 1}`)}
@@ -112,12 +113,10 @@ const VideoContainer = styled.video`
   }
 `;
 
-const TextContainer = styled.div`
+const TextContainer = styled(FlexColumn)`
   position: absolute;
   top: 60%;
   left: 5%;
-  display: flex;
-  flex-direction: column;
   align-items: flex-start;
 
   width: auto;
@@ -133,9 +132,7 @@ const TextContainer = styled.div`
   }
 `;
 
-const FlexColumn = styled.div`
-  display: flex;
-  flex-direction: column;
+const HeadingContainer = styled(FlexColumn)`
   margin-bottom: 40px;
 `;
 

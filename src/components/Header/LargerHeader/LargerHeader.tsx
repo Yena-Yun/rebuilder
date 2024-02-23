@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { changeLanguage } from './utils/changeLanguage';
-import { LogoImage, LanguageImage } from './utils/icons';
+import { KOR, LANGS, TECH, TECH_MENUS } from './constants';
+import { Logo } from '../shared/Logo';
+import { changeLanguage } from '../utils/changeLanguage';
+import { LogoImage, LanguageImage } from '../utils/iconImported';
+import { LANG, MENUS } from '../constants';
 import {
   FlexAlignCenter,
   FlexBetweenCenter,
   FlexCenter,
-} from '../../styles/flex';
-import { Logo } from './shared/Logo';
+} from '../../../styles/flex';
 
 interface HeaderProps {
   dropdownGroup: {
@@ -18,11 +20,19 @@ interface HeaderProps {
 }
 
 export const LargerHeader = ({ dropdownGroup }: HeaderProps) => {
-  const [hoveredNavIndex, setNavIndex] = useState('');
+  const [hoveredMenu, setHoveredMenu] = useState('');
   const [isHoverLanguage, setIsHoverLanguage] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('KOR');
+  const [selectedLanguage, setSelectedLanguage] = useState(KOR);
 
   const { isShowDropdown, showDropdown, hideDropdown } = dropdownGroup;
+
+  const showLanguageModal = () => {
+    setIsHoverLanguage(true);
+  };
+
+  const hideLanguageModal = () => {
+    setIsHoverLanguage(false);
+  };
 
   return (
     <>
@@ -30,55 +40,41 @@ export const LargerHeader = ({ dropdownGroup }: HeaderProps) => {
         <Logo image={LogoImage} />
 
         <FlexAlignCenter>
-          {['Service', 'Technology', 'About', 'Contact'].map((nav) => {
-            return nav === 'Technology' ? (
-              <NavTab
-                key={nav}
-                $borderLine={hoveredNavIndex === nav}
-                onMouseOver={() => {
-                  setNavIndex(nav);
-                  showDropdown();
-                }}
-                onMouseLeave={() => setNavIndex('')}
-              >
-                {nav}
-              </NavTab>
-            ) : (
-              <NavTab
-                key={nav}
-                $borderLine={hoveredNavIndex === nav}
-                onMouseOver={() => {
-                  setNavIndex(nav);
-                  hideDropdown();
-                }}
-                onMouseLeave={() => setNavIndex('')}
-              >
-                {nav}
-              </NavTab>
-            );
-          })}
+          {MENUS.map((menu) => (
+            <NavTab
+              key={menu}
+              $borderLine={hoveredMenu === menu}
+              onMouseOver={() => {
+                setHoveredMenu(menu);
+                menu === TECH ? showDropdown() : hideDropdown();
+              }}
+              onMouseLeave={() => setHoveredMenu('')}
+            >
+              {menu}
+            </NavTab>
+          ))}
         </FlexAlignCenter>
 
         <div></div>
 
         <LanguageSelector
-          onMouseOver={() => setIsHoverLanguage(true)}
-          onMouseLeave={() => setIsHoverLanguage(false)}
+          onMouseOver={showLanguageModal}
+          onMouseLeave={hideLanguageModal}
         >
           <LanguageImage />
           {isHoverLanguage && (
             <ModalTopMargin $isHoverLanguage={isHoverLanguage}>
               <LanguageModal>
-                {['KOR', 'ENG'].map((language) => (
+                {LANGS.map((lang: string) => (
                   <LanguageListItem
-                    key={language}
+                    key={lang}
                     onClick={() => {
-                      changeLanguage(language === 'KOR' ? 'ko' : 'en');
-                      setSelectedLanguage(language);
+                      changeLanguage(LANG[lang as keyof typeof LANG].code);
+                      setSelectedLanguage(lang);
                     }}
-                    $isSelectedLanguage={selectedLanguage === language}
+                    $isSelectedLanguage={selectedLanguage === lang}
                   >
-                    {language}
+                    {lang}
                   </LanguageListItem>
                 ))}
               </LanguageModal>
@@ -89,20 +85,20 @@ export const LargerHeader = ({ dropdownGroup }: HeaderProps) => {
 
       <DropdownContainer
         $isHoverDropdown={isShowDropdown}
-        $hoveredNavIndex={hoveredNavIndex}
+        $hoveredMenu={hoveredMenu}
         onMouseLeave={() => hideDropdown()}
       >
-        {['광원추론', '재질추론', '실측크기', '3D 공간 영상'].map((subNav) => (
+        {TECH_MENUS.map((menu) => (
           <Dropdown
-            key={subNav}
-            $borderLine={hoveredNavIndex === subNav}
+            key={menu}
+            $borderLine={hoveredMenu === menu}
             onMouseOver={() => {
-              setNavIndex(subNav);
+              setHoveredMenu(menu);
               showDropdown();
             }}
-            onMouseLeave={() => setNavIndex('')}
+            onMouseLeave={() => setHoveredMenu('')}
           >
-            {subNav}
+            {menu}
           </Dropdown>
         ))}
       </DropdownContainer>
@@ -114,7 +110,7 @@ const UpperContainer = styled(FlexBetweenCenter)`
   position: relative;
   padding-top: 33px;
 
-  @media screen and (max-width: 768px) {
+  @media (max-width: 768px) {
     padding: 20px 0;
   }
 `;
@@ -149,11 +145,10 @@ const NavTab = styled.span<{ $borderLine: boolean }>`
 
 const DropdownContainer = styled.div<{
   $isHoverDropdown: boolean;
-  $hoveredNavIndex: string;
+  $hoveredMenu: string;
 }>`
-  display: ${({ $isHoverDropdown }) => ($isHoverDropdown ? 'flex' : 'none')};
-  display: ${({ $hoveredNavIndex }) =>
-    $hoveredNavIndex === 'Technology' && 'flex'};
+  display: ${({ $isHoverDropdown, $hoveredMenu }) =>
+    $isHoverDropdown || $hoveredMenu === 'Technology' ? 'flex' : 'none'};
   justify-content: center;
   align-items: center;
   margin-top: 48px;
@@ -171,30 +166,6 @@ const Dropdown = styled.span<{ $borderLine: boolean }>`
   line-height: 24px;
   cursor: pointer;
 
-  @media screen and (max-width: 768px) {
-    font-size: 16px;
-    line-height: 19px;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: -16px;
-      left: -60px;
-      width: 100vw;
-      height: 51px;
-      transform-origin: 0 0;
-      transform: scaleX(0);
-      transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1) 0s;
-      z-index: -1;
-
-      &:hover {
-        transform-origin: 0 0;
-        transform: scaleX(1);
-        backface-visibility: hidden;
-      }
-    }
-  }
-
   &:first-child {
     margin-left: 0;
   }
@@ -211,6 +182,28 @@ const Dropdown = styled.span<{ $borderLine: boolean }>`
     transform: ${({ $borderLine }) =>
       $borderLine ? 'scaleX(1)' : 'scaleX(0)'};
     transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1) 0s;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    line-height: 19px;
+
+    &::after {
+      top: -16px;
+      left: -60px;
+      width: 100vw;
+      height: 51px;
+      transform-origin: 0 0;
+      transform: scaleX(0);
+      transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1) 0s;
+      z-index: -1;
+
+      &:hover {
+        transform-origin: 0 0;
+        transform: scaleX(1);
+        backface-visibility: hidden;
+      }
+    }
   }
 `;
 

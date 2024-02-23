@@ -4,7 +4,7 @@ import { KOR, LANGS, TECH, TECH_MENUS } from './constants';
 import { Logo } from '../shared/Logo';
 import { changeLanguage } from '../utils/changeLanguage';
 import { LogoImage, LanguageImage } from '../utils/iconImported';
-import { LANG, MENUS } from '../constants';
+import { LANG, MENUS } from '../shared/constants';
 import {
   FlexAlignCenter,
   FlexBetweenCenter,

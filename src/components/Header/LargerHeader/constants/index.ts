@@ -1,4 +1,4 @@
-import { MENUS } from '../../constants';
+import { MENUS } from '../../shared/constants';
 
 export const TECH = MENUS[1];
 

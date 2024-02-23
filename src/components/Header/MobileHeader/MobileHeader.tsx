@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Language, MenuSelector } from './shared';
 import { MobileLogoImage } from '../utils/iconImported';
 import { Logo } from '../shared/Logo';
-import { MENUS } from '../constants';
+import { MENUS } from '../shared/constants';
 import { FlexBetweenCenter } from '../../../styles/flex';
 
 interface MobileHeaderProps {

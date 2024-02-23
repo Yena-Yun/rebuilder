@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { MenuImage, CloseImage, MobileLogoImage } from './svgs/HeaderIcons';
+import { MenuImage, CloseImage, MobileLogoImage } from './utils/icons';
 import { Flex, FlexBetweenCenter } from '../../styles/flex';
 import { useEffect, useState } from 'react';
 import { changeLanguage } from 'i18next';
+import { Logo } from './shared/Logo';
 
 interface MobileHeaderProps {
   menuGroup: {
@@ -32,13 +32,7 @@ export const MobileHeader = ({ menuGroup }: MobileHeaderProps) => {
   return (
     <>
       <UpperContainer>
-        <Link
-          to='https://rebuilderai.com'
-          target='_blank'
-          aria-label='Go Back to HomePage'
-        >
-          <img src={MobileLogoImage} alt='service-logo' />
-        </Link>
+        <Logo image={MobileLogoImage} />
 
         {isShowMenu ? (
           <MenuSelector onClick={hideMenu}>

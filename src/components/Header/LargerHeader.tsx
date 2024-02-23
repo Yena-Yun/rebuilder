@@ -1,13 +1,13 @@
+import { useState } from 'react';
 import styled from 'styled-components';
-import { LogoImage, LanguageImage } from './svgs/HeaderIcons';
+import { changeLanguage } from './utils/changeLanguage';
+import { LogoImage, LanguageImage } from './utils/icons';
 import {
   FlexAlignCenter,
   FlexBetweenCenter,
   FlexCenter,
 } from '../../styles/flex';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import { changeLanguage } from './utils';
+import { Logo } from './shared/Logo';
 
 interface HeaderProps {
   dropdownGroup: {
@@ -27,13 +27,7 @@ export const LargerHeader = ({ dropdownGroup }: HeaderProps) => {
   return (
     <>
       <UpperContainer>
-        <Link
-          to='https://rebuilderai.com'
-          target='_blank'
-          aria-label='Go Back to HomePage'
-        >
-          <img src={LogoImage} alt='service-logo' />
-        </Link>
+        <Logo image={LogoImage} />
 
         <FlexAlignCenter>
           {['Service', 'Technology', 'About', 'Contact'].map((nav) => {

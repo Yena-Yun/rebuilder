@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Language, MenuSelector } from './shared';
-import { MobileLogoImage } from '../utils/iconImported';
+import { Language } from './Language';
 import { LogoResponsive } from '../shared/LogoResponsive';
-import { MENUS } from '../shared/constants';
-import { FlexBetweenCenter } from 'styles/flex';
+import { useDelayText } from '../hooks/useDelayText';
+import { MobileLogoImage } from '../utils/icons';
+import { MENUS } from '../constants';
+import { FlexBetweenCenter, FlexColumn } from 'styles/flex';
+import { CloseImage, MenuImage } from '../utils/icons';
+
 
 interface MobileHeaderProps {
   menuGroup: {
@@ -15,34 +17,23 @@ interface MobileHeaderProps {
 }
 
 export const MobileHeader = ({ menuGroup }: MobileHeaderProps) => {
-  const [isShowMenuText, setIsShowMenuText] = useState(false);
-
   const { isShowMenu, showMenu, hideMenu } = menuGroup;
 
-  useEffect(() => {
-    delayDropdownText();
-  }, [isShowMenu]);
-
-  const delayDropdownText = () => {
-    setTimeout(() => {
-      setIsShowMenuText((prev) => !prev);
-    }, 300);
-  };
+  const { isShowMenuText } = useDelayText(isShowMenu);
 
   return (
     <>
       <UpperContainer>
         <LogoResponsive image={<MobileLogoImage />} />
-        <MenuSelector
-          isShowMenu={isShowMenu}
-          onClickFn={{ hideMenu, showMenu }}
-        />
+        <MenuSelector onClick={isShowMenu ? hideMenu : showMenu}>
+          {isShowMenu ? <CloseImage /> : <MenuImage />}
+        </MenuSelector>
       </UpperContainer>
 
       {isShowMenu && (
-        <MobileDropdownContainer id='tab-header-nav'>
+        <MobileDropdownContainer>
           {[...MENUS, <Language hideMenu={hideMenu} />].map((nav) => (
-            <MobileMenu style={{ opacity: isShowMenuText ? 1 : 0 }}>
+            <MobileMenu key={nav as string} $delayTextShowing={isShowMenuText}>
               {nav}
             </MobileMenu>
           ))}
@@ -56,29 +47,33 @@ const UpperContainer = styled(FlexBetweenCenter)`
   position: relative;
   padding-top: 33px;
 
-  @media (max-width: 768px) {
+  @media ${({ theme }) => theme.media.tabletS} {
     padding: 20px 0;
   }
 `;
 
-const MobileDropdownContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+
+const MenuSelector = styled.div`
+  cursor: pointer;
+`;
+
+const MobileDropdownContainer = styled(FlexColumn)`
   gap: 32px;
   padding-top: 32px;
 `;
 
-const MobileMenu = styled.span`
+const MobileMenu = styled.span<{ $delayTextShowing: boolean }>`
+  opacity: ${({ $delayTextShowing }) => ($delayTextShowing ? 1 : 0)} !important;
   position: relative;
   width: 100%;
   color: rgb(255, 255, 255);
   font-size: 2rem;
   font-weight: 500;
   line-height: 24px;
-  cursor: pointer;
   z-index: 0;
+  cursor: pointer;
 
-  @media (max-width: 768px) {
+  @media ${({ theme }) => theme.media.tabletS} {
     font-size: 16px;
     line-height: 19px;
 

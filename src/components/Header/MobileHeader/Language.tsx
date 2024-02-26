@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import i18next, { changeLanguage } from 'i18next';
 import { Flex } from 'styles/flex';
-import { LANGUAGES } from '../../constants';
+import { LANGUAGES } from '../constants';
 
 interface LanguageProps {
   language?: string;

@@ -48,8 +48,8 @@ export const Header = () => {
 const Container = styled.div`
   position: fixed;
   width: 100%;
-  border-bottom: 1px solid rgb(0, 0, 0);
-  background-color: rgb(0, 0, 0);
+  border-bottom: 1px solid ${({ theme }) => theme.color.black};
+  background-color: ${({ theme }) => theme.color.black};
   z-index: 500;
 `;
 
@@ -63,10 +63,10 @@ const InnerContainer = styled.div<{
   padding: 0 30px;
   transition: all 0.2s ease-in-out 0s;
 
-  @media (max-width: 768px) {
+  @media ${({ theme }) => theme.media.tabletS} {
     width: 100%;
     height: ${({ $isShowMenu }) => ($isShowMenu ? '350px' : '64px')};
     padding: 0 60px;
-    background-color: rgb(0, 0, 0);
+    background-color: ${({ theme }) => theme.color.black};
   }
 `;

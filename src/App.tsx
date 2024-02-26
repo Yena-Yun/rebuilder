@@ -1,7 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import Technology from 'pages/Technology';
-import { ScrollToTop } from 'hooks/ScrollToTop';
+import { ScrollToTop } from 'utils/ScrollToTop';
 import { Header } from 'components/Header';
 import { Footer } from 'components/Footer';
 import theme from 'styles/theme';

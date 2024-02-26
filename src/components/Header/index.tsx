@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { MobileHeader } from './MobileHeader';
 import { LargerHeader } from './LargerHeader';
-import { useMedia } from 'hooks/Query';
+import { useMedia } from 'utils/Query';
 
 export const Header = () => {
   const [isShowDropdown, setIsShowDropdown] = useState(false);

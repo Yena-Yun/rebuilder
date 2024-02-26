@@ -1,9 +1,9 @@
 import 'styled-components';
-import { ColorTypes, QueryTypes } from './src/styles/theme';
+import { ColorTypes, MediaTypes } from './src/styles/theme';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    colors: ColorTypes;
-    fontSize: QueryTypes;
+    color: ColorTypes;
+    media: MediaTypes;
   }
 }

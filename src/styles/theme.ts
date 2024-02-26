@@ -1,6 +1,6 @@
 import { DefaultTheme } from 'styled-components';
 
-const media = {
+const breakpoint = {
   mobile: '600',
   tabletS: '768',
   tabletM: '1024',
@@ -24,20 +24,20 @@ const color = {
   blue: 'rgb(23, 60, 254)',
 };
 
-const query = {
-  mobile: `(max-width: ${media.mobile}px)`,
-  tabletS: `(max-width: ${media.tabletS}px)`,
-  tabletM: `(max-width: ${media.tabletM}px)`,
-  tabletL: `(max-width: ${media.tabletL}px)`,
-  laptop: `(max-width: ${media.laptop}px)`,
+const media = {
+  mobile: `(max-width: ${breakpoint.mobile}px)`,
+  tabletS: `(max-width: ${breakpoint.tabletS}px)`,
+  tabletM: `(max-width: ${breakpoint.tabletM}px)`,
+  tabletL: `(max-width: ${breakpoint.tabletL}px)`,
+  laptop: `(max-width: ${breakpoint.laptop}px)`,
 };
 
 export type ColorTypes = typeof color;
-export type QueryTypes = typeof query;
+export type MediaTypes = typeof media;
 
 const theme: DefaultTheme = {
   color,
-  query,
+  media,
 };
 
 export default theme;

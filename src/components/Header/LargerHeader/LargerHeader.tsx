@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { KOR, LANGS, TECH, TECH_MENUS } from './constants';
-import { Logo } from '../shared/Logo';
+import { LogoResponsive } from '../shared/LogoResponsive';
 import { changeLanguage } from '../utils/changeLanguage';
 import { LogoImage, LanguageImage } from '../utils/iconImported';
 import { LANG, MENUS } from '../shared/constants';
@@ -37,7 +37,7 @@ export const LargerHeader = ({ dropdownGroup }: HeaderProps) => {
   return (
     <>
       <UpperContainer>
-        <Logo image={LogoImage} />
+        <LogoResponsive image={<LogoImage />} />
 
         <FlexAlignCenter>
           {MENUS.map((menu) => (

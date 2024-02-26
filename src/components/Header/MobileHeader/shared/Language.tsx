@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import i18next, { changeLanguage } from 'i18next';
 import { Flex } from 'styles/flex';
-import { LANG } from '../../shared/constants';
+import { LANGUAGES } from '../../constants';
 
 interface LanguageProps {
   language?: string;
@@ -15,27 +15,24 @@ interface LanguageProps {
 export const Language = ({ hideMenu }: LanguageProps) => {
   return (
     <Flex>
-      <LanguageText
-        onClick={() => {
-          changeLanguage(LANG.KOR.code);
-          hideMenu();
-        }}
-        $isSelectedLanguage={i18next.language === LANG.KOR.code}
-      >
-        {LANG.KOR.text}
-      </LanguageText>
-      <Bar>
-        <hr />
-      </Bar>
-      <LanguageText
-        onClick={() => {
-          changeLanguage(LANG.ENG.code);
-          hideMenu();
-        }}
-        $isSelectedLanguage={i18next.language === LANG.ENG.code}
-      >
-        {LANG.ENG.text}
-      </LanguageText>
+      {LANGUAGES.map(({ code, display }) => (
+        <>
+          <LanguageText
+            onClick={() => {
+              changeLanguage(code);
+              hideMenu();
+            }}
+            $isSelectedLanguage={i18next.language === code}
+          >
+            {display}
+          </LanguageText>
+          {code === 'ko' && (
+            <Bar>
+              <hr />
+            </Bar>
+          )}
+        </>
+      ))}
     </Flex>
   );
 };

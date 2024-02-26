@@ -18,8 +18,9 @@ const color = {
   darkBlack1: 'rgb(18, 20, 23);',
   darkBlack2: 'rgb(20, 20, 20)',
   gray1: 'rgb(246, 247, 248)',
-  gray2: 'rgb(189, 193, 199)',
-  gray3: 'rgb(111, 117, 123)',
+  gray2: 'rgb(230, 232, 235)',
+  gray3: 'rgb(189, 193, 199)',
+  gray4: 'rgb(111, 117, 123)',
   blue: 'rgb(23, 60, 254)',
 };
 

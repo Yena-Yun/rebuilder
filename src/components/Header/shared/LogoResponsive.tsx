@@ -1,8 +1,7 @@
-import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
 interface LogoProps {
-  image: ReactNode;
+  image: React.ReactNode;
 }
 
 export const LogoResponsive = ({ image }: LogoProps) => {

@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { GroupBox } from './shared/GroupBox';
 import {
   ANCHOR,
   COMPANY_INFO,
@@ -79,6 +78,12 @@ const Container = styled.div`
 
 const InnerContainer = styled.div`
   padding: 0 80px;
+`;
+
+const GroupBox = styled(Flex)<{ $mb: string; $flex: string; $gap?: string }>`
+  ${({ $flex }) => ($flex === 'col' ? `flex-direction: column` : '')};
+  ${({ $gap }) => ($gap ? `gap: ${$gap}px` : '')};
+  margin-bottom: ${({ $mb }) => $mb}px;
 `;
 
 const LinkAnchor = styled(Link)`

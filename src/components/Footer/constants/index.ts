@@ -1,4 +1,4 @@
-import { InstagramImage, LinkedinImage, NaverBlogImage, TistoryImage } from "../utils/icons";
+import { InstagramImage, LinkedinImage, NaverBlogImage, TistoryImage } from "../icons";
 
 export const ANCHOR = {
   company: {

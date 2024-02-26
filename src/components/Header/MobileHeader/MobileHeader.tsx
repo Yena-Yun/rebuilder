@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Language, MenuSelector } from './shared';
 import { MobileLogoImage } from '../utils/iconImported';
-import { Logo } from '../shared/Logo';
+import { LogoResponsive } from '../shared/LogoResponsive';
 import { MENUS } from '../shared/constants';
 import { FlexBetweenCenter } from '../../../styles/flex';
 
@@ -20,10 +20,10 @@ export const MobileHeader = ({ menuGroup }: MobileHeaderProps) => {
   const { isShowMenu, showMenu, hideMenu } = menuGroup;
 
   useEffect(() => {
-    delayShowDropdownText();
+    delayDropdownText();
   }, [isShowMenu]);
 
-  const delayShowDropdownText = () => {
+  const delayDropdownText = () => {
     setTimeout(() => {
       setIsShowMenuText((prev) => !prev);
     }, 300);
@@ -32,10 +32,10 @@ export const MobileHeader = ({ menuGroup }: MobileHeaderProps) => {
   return (
     <>
       <UpperContainer>
-        <Logo image={MobileLogoImage} />
+        <LogoResponsive image={<MobileLogoImage />} />
         <MenuSelector
-          _onClick={isShowMenu ? hideMenu : showMenu}
-          srcNalt={isShowMenu}
+          isShowMenu={isShowMenu}
+          onClickFn={{ hideMenu, showMenu }}
         />
       </UpperContainer>
 

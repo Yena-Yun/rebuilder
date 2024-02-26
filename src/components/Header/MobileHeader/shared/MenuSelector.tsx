@@ -2,17 +2,19 @@ import styled from 'styled-components';
 import { CloseImage, MenuImage } from '../../utils/iconImported';
 
 interface MenuSelectorProps {
-  _onClick: () => void;
-  srcNalt: boolean;
+  isShowMenu: boolean;
+  onClickFn: {
+    showMenu: () => void;
+    hideMenu: () => void;
+  };
 }
 
-export const MenuSelector = ({ _onClick, srcNalt }: MenuSelectorProps) => {
+export const MenuSelector = ({ isShowMenu, onClickFn }: MenuSelectorProps) => {
+  const { showMenu, hideMenu } = onClickFn;
+
   return (
-    <Container onClick={_onClick}>
-      <img
-        src={srcNalt ? CloseImage : MenuImage}
-        alt={`${srcNalt ? 'close' : 'menu'}-icon`}
-      />
+    <Container onClick={isShowMenu ? hideMenu : showMenu}>
+      {isShowMenu ? <CloseImage /> : <MenuImage />}
     </Container>
   );
 };

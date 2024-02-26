@@ -1,17 +1,18 @@
+import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
 interface LogoProps {
-  image: string;
+  image: ReactNode;
 }
 
-export const Logo = ({ image }: LogoProps) => {
+export const LogoResponsive = ({ image }: LogoProps) => {
   return (
     <Link
       to='https://rebuilderai.com'
       target='_blank'
       aria-label='Go Back to HomePage'
     >
-      <img src={image} alt='service-logo' />
+      {image}
     </Link>
   );
 };

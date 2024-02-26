@@ -2,11 +2,9 @@ import styled from 'styled-components';
 import { Language } from './Language';
 import { LogoResponsive } from '../shared/LogoResponsive';
 import { useDelayText } from '../hooks/useDelayText';
-import { MobileLogoImage } from '../utils/icons';
 import { MENUS } from '../constants';
+import { MobileLogoImage, CloseImage, MenuImage } from '../icons';
 import { FlexBetweenCenter, FlexColumn } from 'styles/flex';
-import { CloseImage, MenuImage } from '../utils/icons';
-
 
 interface MobileHeaderProps {
   menuGroup: {
@@ -52,7 +50,6 @@ const UpperContainer = styled(FlexBetweenCenter)`
   }
 `;
 
-
 const MenuSelector = styled.div`
   cursor: pointer;
 `;
@@ -66,7 +63,7 @@ const MobileMenu = styled.span<{ $delayTextShowing: boolean }>`
   opacity: ${({ $delayTextShowing }) => ($delayTextShowing ? 1 : 0)} !important;
   position: relative;
   width: 100%;
-  color: rgb(255, 255, 255);
+  color: ${({ theme }) => theme.color.white};
   font-size: 2rem;
   font-weight: 500;
   line-height: 24px;
@@ -92,7 +89,7 @@ const MobileMenu = styled.span<{ $delayTextShowing: boolean }>`
   }
 
   &::after {
-    background-color: rgb(20, 20, 20);
+    background-color: ${({ theme }) => theme.color.darkBlack2};
   }
 
   &:hover::after {

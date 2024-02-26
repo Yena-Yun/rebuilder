@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useBackgroundObserver } from './hooks/useBackgroundObserver';
-import { FlexColumn } from '../../../../styles/flex'
+import { FlexColumn } from 'styles/flex';
 
 interface ObserverUIProps {
   videoSource: string;

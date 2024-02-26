@@ -4,7 +4,7 @@ import { Language, MenuSelector } from './shared';
 import { MobileLogoImage } from '../utils/iconImported';
 import { LogoResponsive } from '../shared/LogoResponsive';
 import { MENUS } from '../shared/constants';
-import { FlexBetweenCenter } from '../../../styles/flex';
+import { FlexBetweenCenter } from 'styles/flex';
 
 interface MobileHeaderProps {
   menuGroup: {

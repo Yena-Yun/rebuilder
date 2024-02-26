@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import i18next, { changeLanguage } from 'i18next';
-import { Flex } from '../../../../styles/flex';
+import { Flex } from 'styles/flex';
 import { LANG } from '../../shared/constants';
 
 interface LanguageProps {

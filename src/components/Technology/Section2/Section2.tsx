@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useFadeInObserver } from './hooks/useFadeInObserver';
 import { WORD_LIST } from './constants';
-import { FlexColumn, FlexBetween } from '../../../styles/flex';
+import { FlexColumn, FlexBetween } from 'styles/flex';
 
 export const Section2 = () => {
   const { t } = useTranslation();

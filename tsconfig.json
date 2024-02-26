@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
     "target": "ESNext",
     "downlevelIteration": true,
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -24,5 +25,5 @@
       "node"
     ]
   },
-  "include": ["vite.config.ts", "src", "./assets.d.ts"]
+  "include": ["src", "src/index.tsx", "vite.config.ts", "./assets.d.ts"]
 }

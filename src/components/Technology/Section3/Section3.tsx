@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import translation from '../../../locales/en/sentences.json';
+import translation from 'locales/en/sentences.json';
+
+const IMAGE_SOURCE = (index: number) =>
+  `/images/large/horizontal-${index + 1}.png`;
+
+const IMAGE_ALT = (index: number) => `technology-${index + 1}`;
 
 export const Section3 = () => {
   const { t } = useTranslation();
@@ -11,10 +16,7 @@ export const Section3 = () => {
         <ImageContainer>
           {Object.keys(translation.section3).map((text, i) => (
             <ImageBox key={text}>
-              <img
-                src={`/images/large/horizontal-${i + 1}.png`}
-                alt={`technology-${i + 1}`}
-              />
+              <img src={IMAGE_SOURCE(i)} alt={IMAGE_ALT(i)} />
               <span>{t(`section3.caption${i + 1}`)}</span>
             </ImageBox>
           ))}

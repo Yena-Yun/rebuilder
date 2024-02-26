@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { FlexColumnCenter } from '../../../styles/flex';
+import { FlexColumnCenter } from 'styles/flex';
 
 const VIDEO_SOURCE = '/videos/pc/tech_video1_pc.mp4';
 const VIDEO_TYPE = 'video/mp4';

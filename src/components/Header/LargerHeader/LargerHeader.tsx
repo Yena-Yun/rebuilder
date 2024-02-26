@@ -5,11 +5,7 @@ import { LogoResponsive } from '../shared/LogoResponsive';
 import { changeLanguage } from '../utils/changeLanguage';
 import { LogoImage, LanguageImage } from '../utils/iconImported';
 import { LANG, MENUS } from '../shared/constants';
-import {
-  FlexAlignCenter,
-  FlexBetweenCenter,
-  FlexCenter,
-} from '../../../styles/flex';
+import { FlexAlignCenter, FlexBetweenCenter, FlexCenter } from 'styles/flex';
 
 interface HeaderProps {
   dropdownGroup: {

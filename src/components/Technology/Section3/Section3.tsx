@@ -9,13 +9,11 @@ export const Section3 = () => {
   const { isMobile, isTabletS } = useMedia();
 
   const IMAGE_SOURCE = (index: number) => {
-    const mediaSize = isTabletS ? 'small' : 'large';
-    const mediaDirection = isMobile ? 'vertical' : 'horizontal';
+    const size = isTabletS ? 'small' : 'large';
+    const orientation = isMobile ? 'vertical' : 'horizontal';
 
-    return `/images/${mediaSize}/${mediaDirection}-${index + 1}.png`;
+    return `/images/${size}/${orientation}-${index + 1}.png`;
   };
-
-  const IMAGE_ALT = (index: number) => `technology-${index + 1}`;
 
   return (
     <Container>
@@ -23,7 +21,7 @@ export const Section3 = () => {
         <ImageContainer>
           {Object.keys(translation.section3).map((text, i) => (
             <ImageBox key={text}>
-              <img src={IMAGE_SOURCE(i)} alt={IMAGE_ALT(i)} />
+              <img src={IMAGE_SOURCE(i)} alt='main-technology' />
               <span>{t(`section3.caption${i + 1}`)}</span>
             </ImageBox>
           ))}

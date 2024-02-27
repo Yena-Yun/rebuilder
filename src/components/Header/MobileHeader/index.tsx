@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Language } from './Language';
+import { LanguageSelector } from './LanguageSelector';
 import { LogoResponsive } from '../shared/LogoResponsive';
 import { useDelayText } from '../hooks/useDelayText';
 import { MENUS } from '../constants';
@@ -30,7 +30,7 @@ export const MobileHeader = ({ menuGroup }: MobileHeaderProps) => {
 
       {isShowMenu && (
         <MobileDropdownContainer>
-          {[...MENUS, <Language hideMenu={hideMenu} />].map((nav) => (
+          {[...MENUS, <LanguageSelector hideMenu={hideMenu} />].map((nav) => (
             <MobileMenu key={nav as string} $delayTextShowing={isShowMenuText}>
               {nav}
             </MobileMenu>

@@ -3,7 +3,7 @@ import i18next, { changeLanguage } from 'i18next';
 import { Flex } from 'styles/flex';
 import { LANGUAGES } from '../constants';
 
-interface LanguageProps {
+interface LanguageSelectorProps {
   language?: string;
   selectedGroup?: {
     selectedLanguage: string;
@@ -12,12 +12,12 @@ interface LanguageProps {
   hideMenu: () => void;
 }
 
-export const Language = ({ hideMenu }: LanguageProps) => {
+export const LanguageSelector = ({ hideMenu }: LanguageSelectorProps) => {
   return (
     <Flex>
       {LANGUAGES.map(({ code, display }) => (
         <>
-          <LanguageText
+          <Label
             onClick={() => {
               changeLanguage(code);
               hideMenu();
@@ -25,7 +25,7 @@ export const Language = ({ hideMenu }: LanguageProps) => {
             $isSelectedLanguage={i18next.language === code}
           >
             {display}
-          </LanguageText>
+          </Label>
           {code === 'ko' && (
             <Bar>
               <hr />
@@ -37,27 +37,27 @@ export const Language = ({ hideMenu }: LanguageProps) => {
   );
 };
 
-const LanguageText = styled.span<{ $isSelectedLanguage: boolean }>`
-  font-weight: 600;
+const Label = styled.span<{ $isSelectedLanguage: boolean }>`
+  color: ${({ $isSelectedLanguage, theme }) =>
+    $isSelectedLanguage ? theme.color.white : theme.color.gray4};
   font-size: 1.6rem;
+  font-weight: 600;
   line-height: 19px;
-  color: ${({ $isSelectedLanguage }) =>
-    $isSelectedLanguage ? 'rgb(255, 255, 255)' : 'rgb(111, 117, 123)'};
   cursor: pointer;
 `;
 
 const Bar = styled(Flex)`
   height: 12px;
-  background-color: rgb(111, 117, 123);
+  background-color: ${({ theme }) => theme.color.gray4};
   margin: 3px 8px;
 
   & hr {
-    height: auto;
-    margin: 8px 0;
     flex-shrink: 0;
     align-self: stretch;
+    height: auto;
+    margin: 8px 0;
     border-width: 0 thin 0 0;
     border-style: solid;
-    border-color: rgba(0, 0, 0, 0.12);
+    border-color: ${({ theme }) => theme.color.lightBlack2};
   }
 `;

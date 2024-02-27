@@ -8,7 +8,7 @@ export const Header = () => {
   const [isShowDropdown, setIsShowDropdown] = useState(false);
   const [isShowMenu, setIsShowMenu] = useState(false);
 
-  const { isTablet } = useMedia();
+  const { isTabletS } = useMedia();
 
   const showDropdown = () => {
     setIsShowDropdown(true);
@@ -33,7 +33,7 @@ export const Header = () => {
         $isHoverDropdown={isShowDropdown}
         $isShowMenu={isShowMenu}
       >
-        {isTablet ? (
+        {isTabletS ? (
           <MobileHeader menuGroup={{ isShowMenu, showMenu, hideMenu }} />
         ) : (
           <LargerHeader

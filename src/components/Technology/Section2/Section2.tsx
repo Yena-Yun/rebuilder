@@ -42,9 +42,8 @@ export const Section2 = () => {
           className={isInViewport ? 'frame-in' : ''}
           $easeInOut={easeInOut}
         >
-          <span>
-            {t('section2.line1')}&nbsp;{t('section2.line2')}
-          </span>
+          <span>{t('section2.line1')}&nbsp;</span>
+          <span>{t('section2.line2')}</span>
         </OneLine>
       </InnerContainer>
     </Container>
@@ -56,6 +55,18 @@ const Container = styled.div`
   width: 100%;
   height: 90vh;
   background-color: ${({ theme }) => theme.color.black};
+
+  @media ${({ theme }) => theme.media.laptop} {
+    height: 80vh;
+  }
+
+  @media ${({ theme }) => theme.media.tabletS} {
+    height: 75vh;
+  }
+
+  @media ${({ theme }) => theme.media.mobile} {
+    height: 50vh;
+  }
 `;
 
 const InnerContainer = styled.div`
@@ -64,6 +75,10 @@ const InnerContainer = styled.div`
   top: 15%;
   width: 100%;
   transform: translate(-50%);
+
+  @media ${({ theme }) => theme.media.mobile} {
+    top: 0;
+  }
 `;
 
 const KeywordContainer = styled.div<{ $delay: string; $easeInOut: Keyframes }>`
@@ -137,6 +152,7 @@ const OneLine = styled.div<{ $easeInOut: Keyframes }>`
   @media ${({ theme }) => theme.media.tabletM} {
     width: 500px;
     margin: 150px auto 0;
+    white-space: pre-wrap;
   }
 
   @media ${({ theme }) => theme.media.tabletS} {
@@ -147,6 +163,7 @@ const OneLine = styled.div<{ $easeInOut: Keyframes }>`
 
   @media ${({ theme }) => theme.media.mobile} {
     margin-top: 70px;
+    opacity: 1;
   }
 
   & span {
@@ -154,13 +171,13 @@ const OneLine = styled.div<{ $easeInOut: Keyframes }>`
     font-size: 3.6rem;
     font-weight: 500;
     line-height: 138%;
-    text-align: center;
 
     @media ${({ theme }) => theme.media.laptop} {
       font-size: 2.8rem;
     }
 
     @media ${({ theme }) => theme.media.tabletS} {
+      display: block;
       font-size: 2.2rem;
     }
 

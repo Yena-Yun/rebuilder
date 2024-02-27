@@ -62,6 +62,11 @@ const MainBackground = styled.div`
     rgba(0, 0, 0, 0) 100%
   );
   z-index: 150;
+
+  @media ${({ theme }) => theme.media.tabletS} {
+    top: 65px;
+    height: calc(100vh - 65px);
+  }
 `;
 
 const TextContainer = styled(FlexColumnCenter)`

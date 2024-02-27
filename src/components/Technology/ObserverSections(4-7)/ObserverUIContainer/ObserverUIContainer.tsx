@@ -1,60 +1,54 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useBackgroundObserver } from './hooks/useBackgroundObserver';
+import { useMedia } from 'utils/Query';
 import { FlexColumn } from 'styles/flex';
 
 interface ObserverUIProps {
-  videoSource: string;
+  order?: number;
   content: {
     head: Object;
     body: Object;
   };
-  order?: number;
-  hasBackground?: boolean;
+  isLastSection?: boolean;
 }
 
+const BG_SOURCE = '/images/overlay.png';
+const LAST_VIDEO_SOURCE = '/videos/tech_video7.mp4';
+
 export const ObserverUIContainer = ({
-  videoSource,
-  content,
   order,
-  hasBackground,
+  content,
+  isLastSection,
 }: ObserverUIProps) => {
-  const { containerRef, backgroundStatus } = useBackgroundObserver();
   const { t } = useTranslation();
 
-  const VIDEO_SOURCE = `/videos/${videoSource}.mp4`;
-  const BACKGROUND_SOURCE = '/images/overlay.png';
+  const { containerRef, backgroundStatus } = useBackgroundObserver();
+  const { isMobile, isTabletS } = useMedia();
+
+  const media = isMobile ? 'mobile' : isTabletS ? 'tablet' : 'pc';
+
+  const VIDEO_SOURCE = `/videos/${media}/tech_video${order}_${media}.mp4`;
 
   return (
     <Container ref={containerRef}>
-      <BackgroundVideo className={backgroundStatus}>
-        {hasBackground && (
-          <BackgroundOverlay src={BACKGROUND_SOURCE} alt='video-background' />
+      <VideoContainer className={backgroundStatus}>
+        {isLastSection && <Overlay src={BG_SOURCE} alt='last-video-overlay' />}
+        {isLastSection ? (
+          <LastVideo loop playsInline autoPlay muted src={LAST_VIDEO_SOURCE} />
+        ) : (
+          <Video loop playsInline autoPlay muted src={VIDEO_SOURCE} />
         )}
-        <VideoContainer
-          width='100%'
-          height='100%'
-          loop
-          autoPlay
-          playsInline
-          muted
-          src={VIDEO_SOURCE}
-          className={hasBackground ? 'inner-video' : ''}
-        />
-      </BackgroundVideo>
+      </VideoContainer>
 
       <TextContainer>
-        <HeadingContainer>
-          {Object.keys(content.head).map((_, id) => (
-            <Heading key={id}>
-              {t(`section${order}.head.line${id + 1}`)}
-            </Heading>
+        <Heading>
+          {Object.keys(content.head).map((key, id) => (
+            <Head key={key}>{t(`section${order}.head.line${id + 1}`)}</Head>
           ))}
-        </HeadingContainer>
-        {Object.keys(content.body).map((_, id) => (
-          <Paragraph key={id}>
-            {t(`section${order}.body.line${id + 1}`)}
-          </Paragraph>
+        </Heading>
+        {Object.keys(content.body).map((key, id) => (
+          <Line key={key}>{t(`section${order}.body.line${id + 1}`)}</Line>
         ))}
       </TextContainer>
     </Container>
@@ -65,18 +59,21 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   height: 200vh;
-  background-color: rgb(18, 20, 23);
+  background-color: ${({ theme }) => theme.color.darkBlack1};
+
+  @media ${({ theme }) => theme.media.mobile} {
+    height: 100vh;
+  }
 `;
 
-const BackgroundOverlay = styled.img`
+const Overlay = styled.img`
   width: 100%;
   height: 100%;
   min-height: 100vh;
   object-fit: cover;
 `;
 
-const BackgroundVideo = styled.div`
-  position: relative;
+const VideoContainer = styled.div`
   width: 100%;
   height: auto;
 
@@ -99,17 +96,33 @@ const BackgroundVideo = styled.div`
   }
 `;
 
-const VideoContainer = styled.video`
+const Video = styled.video`
+  width: 100%;
+  height: 100%;
   min-height: 100vh;
   object-fit: cover;
+`;
 
-  &.inner-video {
-    position: absolute;
-    top: 25vh;
-    right: 10vw;
-    height: auto;
-    max-width: 952px;
-    min-height: 75vh;
+const LastVideo = styled.video`
+  position: absolute;
+  top: 25vh;
+  right: 10vw;
+  width: 100%;
+  height: auto;
+  max-width: 952px;
+  object-fit: cover;
+
+  @media ${({ theme }) => theme.media.laptop} {
+    right: unset;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 0 30px;
+  }
+
+  @media ${({ theme }) => theme.media.tabletS} {
+    top: 40vh;
+    max-width: 628px;
+    padding: 0 70px;
   }
 `;
 
@@ -118,35 +131,34 @@ const TextContainer = styled(FlexColumn)`
   top: 60%;
   left: 5%;
   align-items: flex-start;
-
   width: auto;
   padding: 32px 50px;
-  background-color: rgba(40, 45, 50, 0.3);
+  background-color: ${({ theme }) => theme.color.lightBlack3};
   border-radius: 10px;
   transform: translate(0px, -50%);
   backdrop-filter: blur(6px);
   z-index: 10;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: ${({ theme }) => theme.color.lightBlack4};
   }
 `;
 
-const HeadingContainer = styled(FlexColumn)`
+const Heading = styled(FlexColumn)`
   margin-bottom: 40px;
 `;
 
-const Heading = styled.span`
+const Head = styled.span`
   font-size: 4rem;
   font-weight: 600;
   line-height: 138%;
-  color: rgb(255, 255, 255);
+  color: ${({ theme }) => theme.color.white};
 `;
 
-const Paragraph = styled.span`
+const Line = styled.span`
   font-size: 2.4rem;
   font-weight: 400;
   line-height: 138%;
-  color: rgb(255, 255, 255);
+  color: ${({ theme }) => theme.color.white};
   white-space: pre-wrap;
 `;

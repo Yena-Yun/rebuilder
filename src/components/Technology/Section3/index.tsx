@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { useMedia } from 'utils/Query';
+import { useMedia } from 'hooks/useMedia';
 import translation from 'locales/en/sentences.json';
 
 export const Section3 = () => {

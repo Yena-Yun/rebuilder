@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { easeInOut } from '../keyframeStyle';
-import { useMedia } from 'utils/Query';
+import { easeInOut } from '../styles/keyframeStyle';
+import { useMedia } from 'hooks/useMedia';
 import { FlexColumnCenter } from 'styles/flex';
 import { Keyframes } from 'styled-components/dist/types';
 

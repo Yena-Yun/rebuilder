@@ -1,4 +1,4 @@
-import { ObserverUIContainer } from '../ObserverUIContainer/ObserverUIContainer';
+import { ObserverUIContainer } from '../ObserverUIContainer';
 import translation from 'locales/en/sentences.json';
 
 export const Section4 = () => {

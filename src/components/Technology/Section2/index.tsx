@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useFadeInObserver } from './hooks/useFadeInObserver';
-import { easeInOut } from '../keyframeStyle';
+import { easeInOut } from '../styles/keyframeStyle';
 import { WORD_LIST } from './constants';
 import { FlexColumn, FlexBetween } from 'styles/flex';
 import { Keyframes } from 'styled-components/dist/types';
@@ -17,8 +17,9 @@ export const Section2 = () => {
       <InnerContainer ref={scrollRef}>
         <FlexColumn>
           <FlexBetween>
-            {/* 상위 justify-content: space-between으로 적절한 여백을 띄워주기 위한 div 선언 */}
+            {/* 상위 justify-content: space-between으로 서로 간에 적절한 여백을 띄워주기 위한 div 2군데 선언 */}
             <div></div>
+
             <FlexColumn>
               {WORD_LIST.map(({ delay, capital, restWord }) => (
                 <KeywordContainer
@@ -34,6 +35,7 @@ export const Section2 = () => {
                 </KeywordContainer>
               ))}
             </FlexColumn>
+
             <div></div>
           </FlexBetween>
         </FlexColumn>

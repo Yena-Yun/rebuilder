@@ -40,7 +40,6 @@ export const LargerHeader = ({ dropdownGroup }: HeaderProps) => {
         <FlexAlignCenter>
           {MENUS.map((menu: string) => (
             <NavTab
-              /** menu가 고유한 string이므로 별다른 id 없이 key 설정 */
               key={menu}
               onMouseOver={() => {
                 setHoveredMenu(menu);
@@ -62,7 +61,7 @@ export const LargerHeader = ({ dropdownGroup }: HeaderProps) => {
         >
           <LanguageImage />
           {isHoverLanguage && (
-            /* language 아이콘과 hover 시 뜨는 모달 사이 공간을 hover해도 모달이 계속 떠 있도록 처리 */
+            /* ModalTopMargin: hover 시 뜨는 모달과 language 아이콘 사이의 빈 공간 */
             <ModalTopMargin $isHoverLanguage={isHoverLanguage}>
               <LanguageModal>
                 {LANGUAGES.map(({ code, display }: (typeof LANGUAGES)[0]) => (

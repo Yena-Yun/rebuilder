@@ -4,7 +4,6 @@ import translation from 'locales/en/sentences.json';
 
 const IMAGE_SOURCE = (index: number) =>
   `/images/large/horizontal-${index + 1}.png`;
-
 const IMAGE_ALT = (index: number) => `technology-${index + 1}`;
 
 export const Section3 = () => {
@@ -28,7 +27,7 @@ export const Section3 = () => {
 
 const Container = styled.div`
   width: 100%;
-  background: rgb(0, 0, 0);
+  background-color: rgb(0, 0, 0);
 `;
 
 const InnerContainer = styled.div`

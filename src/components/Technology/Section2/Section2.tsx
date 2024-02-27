@@ -48,7 +48,7 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   height: 90vh;
-  background: rgb(0, 0, 0);
+  background-color: rgb(0, 0, 0);
 `;
 
 const InnerContainer = styled.div`

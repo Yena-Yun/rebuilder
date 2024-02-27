@@ -64,7 +64,7 @@ const MainBackground = styled.div`
   top: 95px;
   width: 100%;
   height: calc(100vh - 95px);
-  background: linear-gradient(
+  background-color: linear-gradient(
     0deg,
     rgba(0, 0, 0, 0.75) 0%,
     rgba(0, 0, 0, 0) 100%

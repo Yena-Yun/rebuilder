@@ -30,6 +30,7 @@ const media = {
   tabletM: `(max-width: ${breakpoint.tabletM}px)`,
   tabletL: `(max-width: ${breakpoint.tabletL}px)`,
   laptop: `(max-width: ${breakpoint.laptop}px)`,
+  desktop: `(min-width: ${breakpoint.tabletL}px)`,
 };
 
 export type ColorTypes = typeof color;

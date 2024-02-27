@@ -1,13 +1,21 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { useMedia } from 'utils/Query';
 import translation from 'locales/en/sentences.json';
-
-const IMAGE_SOURCE = (index: number) =>
-  `/images/large/horizontal-${index + 1}.png`;
-const IMAGE_ALT = (index: number) => `technology-${index + 1}`;
 
 export const Section3 = () => {
   const { t } = useTranslation();
+
+  const { isMobile, isTabletS } = useMedia();
+
+  const IMAGE_SOURCE = (index: number) => {
+    const mediaSize = isTabletS ? 'small' : 'large';
+    const mediaDirection = isMobile ? 'vertical' : 'horizontal';
+
+    return `/images/${mediaSize}/${mediaDirection}-${index + 1}.png`;
+  };
+
+  const IMAGE_ALT = (index: number) => `technology-${index + 1}`;
 
   return (
     <Container>
@@ -27,21 +35,49 @@ export const Section3 = () => {
 
 const Container = styled.div`
   width: 100%;
-  background-color: rgb(0, 0, 0);
+  background-color: ${({ theme }) => theme.color.black};
 `;
 
 const InnerContainer = styled.div`
   width: 100%;
-  max-width: 1200px;
   height: 100%;
   margin: 0 auto;
   padding: 200px 30px 300px;
+
+  @media ${({ theme }) => theme.media.desktop} {
+    max-width: 1200px;
+  }
+
+  @media ${({ theme }) => theme.media.laptop} {
+    padding: 100px 30px 250px;
+  }
+
+  @media ${({ theme }) => theme.media.tabletS} {
+    padding: 0px 60px 200px;
+  }
+
+  @media ${({ theme }) => theme.media.mobile} {
+    padding: 0px 20px 80px;
+  }
 `;
 
 const ImageContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, auto);
   gap: 101px 24px;
+
+  @media ${({ theme }) => theme.media.laptop} {
+    gap: 60.5px 18px;
+  }
+
+  @media ${({ theme }) => theme.media.tabletS} {
+    gap: 20px 9px;
+  }
+
+  @media ${({ theme }) => theme.media.mobile} {
+    gap: 16px 8px;
+    white-space: pre-wrap;
+  }
 `;
 
 const ImageBox = styled.div`
@@ -66,9 +102,23 @@ const ImageBox = styled.div`
     position: absolute;
     left: 36px;
     bottom: 36px;
-    color: rgb(255, 255, 255);
+    color: ${({ theme }) => theme.color.white};
     font-size: 2.4rem;
     font-weight: 500;
     line-height: 33px;
+
+    @media ${({ theme }) => theme.media.laptop} {
+      left: 25px;
+      bottom: 25px;
+      font-size: 2.2rem;
+      line-height: 26px;
+    }
+
+    @media ${({ theme }) => theme.media.tabletS} {
+      left: 16px;
+      bottom: 16px;
+      font-size: 1.4rem;
+      line-height: 17px;
+    }
   }
 `;

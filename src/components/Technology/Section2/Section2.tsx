@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useFadeInObserver } from './hooks/useFadeInObserver';
-import { easeInOut } from './utils/keyframeStyle';
+import { easeInOut } from '../keyframeStyle';
 import { WORD_LIST } from './constants';
 import { FlexColumn, FlexBetween } from 'styles/flex';
 import { Keyframes } from 'styled-components/dist/types';
@@ -21,17 +21,17 @@ export const Section2 = () => {
             <div></div>
             <FlexColumn>
               {WORD_LIST.map(({ delay, capital, restWord }) => (
-                <WordBox
+                <KeywordContainer
                   key={delay}
                   className={isInViewport ? 'frame-in' : ''}
                   $delay={delay}
                   $easeInOut={easeInOut}
                 >
-                  <Word>
+                  <Keyword>
                     <span className='capital'>{capital}</span>
                     {restWord}
-                  </Word>
-                </WordBox>
+                  </Keyword>
+                </KeywordContainer>
               ))}
             </FlexColumn>
             <div></div>
@@ -66,7 +66,7 @@ const InnerContainer = styled.div`
   transform: translate(-50%);
 `;
 
-const WordBox = styled.div<{ $delay: string; $easeInOut: Keyframes }>`
+const KeywordContainer = styled.div<{ $delay: string; $easeInOut: Keyframes }>`
   opacity: 0;
   margin-bottom: 4.6px;
 
@@ -88,7 +88,7 @@ const WordBox = styled.div<{ $delay: string; $easeInOut: Keyframes }>`
   }
 `;
 
-const Word = styled.span`
+const Keyword = styled.span`
   color: ${({ theme }) => theme.color.white};
   font-size: 5.06rem;
   font-weight: 500;

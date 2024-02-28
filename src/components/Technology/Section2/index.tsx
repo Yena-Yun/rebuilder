@@ -191,7 +191,7 @@ const OneLine = styled.div<{ $easeInOut: Keyframes }>`
   &.frame-in {
     ${({ $easeInOut }) =>
       css`
-        animation: 1s ease-in-out 2.5s 1 normal forwards running ${$easeInOut};
+        animation: 1s ease-in-out 2s 1 normal forwards running ${$easeInOut};
       `};
   }
 `;

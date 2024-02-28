@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   ANCHOR,
@@ -7,17 +7,15 @@ import {
   SOCIAL_MEDIA,
   TERM,
 } from './constants';
-import { Flex } from 'styles/flex';
+import { Flex, FlexColumn } from 'styles/flex';
 
 export const Footer = () => {
-  const navigate = useNavigate();
-
   const { company, service, contact } = ANCHOR;
 
   return (
     <Container>
       <InnerContainer>
-        <GroupBox $mb='15' $flex='row'>
+        <HeadContainer>
           <LinkAnchor
             to={company.url}
             target='_blank'
@@ -25,23 +23,19 @@ export const Footer = () => {
           >
             {company.name}
           </LinkAnchor>
-          <RouteAnchor onClick={() => navigate(service.path)}>
-            {service.text}
-          </RouteAnchor>
-          <RouteAnchor onClick={() => navigate(contact.path)}>
-            {contact.text}
-          </RouteAnchor>
-        </GroupBox>
+          <LinkAnchor to={service.path}>{service.text}</LinkAnchor>
+          <LinkAnchor to={contact.path}>{contact.text}</LinkAnchor>
+        </HeadContainer>
 
-        <GroupBox $mb='10' $flex='col'>
+        <InfoContainer>
           {COMPANY_INFO.map(({ id, info }) => (
             <CompanyInfo key={id}>{info}</CompanyInfo>
           ))}
-        </GroupBox>
+        </InfoContainer>
 
         <CopyRight>{COPY_RIGHT}</CopyRight>
 
-        <GroupBox $mb='20' $flex='col' $gap='6'>
+        <TermContainer>
           {TERM.map((term, index) => (
             <Flex key={index}>
               {term.map(({ id, title, path }) => (
@@ -51,7 +45,7 @@ export const Footer = () => {
               ))}
             </Flex>
           ))}
-        </GroupBox>
+        </TermContainer>
 
         <Flex>
           {SOCIAL_MEDIA.map(({ id, url, ariaLabel, image, alt }) => (
@@ -74,16 +68,30 @@ const Container = styled.div`
   width: 100%;
   padding: 60px 0;
   background-color: ${({ theme }) => theme.color.gray2};
+
+  @media ${({ theme }) => theme.media.tabletS} {
+    font-size: 1.2rem;
+  }
+
+  @media ${({ theme }) => theme.media.mobile} {
+    padding: 30px 0px 60px;
+  }
 `;
 
 const InnerContainer = styled.div`
   padding: 0 80px;
+
+  @media ${({ theme }) => theme.media.tabletS} {
+    padding: 0 70px;
+  }
+
+  @media ${({ theme }) => theme.media.mobile} {
+    padding: 0 20px;
+  }
 `;
 
-const GroupBox = styled(Flex)<{ $mb: string; $flex: string; $gap?: string }>`
-  ${({ $flex }) => ($flex === 'col' ? `flex-direction: column` : '')};
-  ${({ $gap }) => ($gap ? `gap: ${$gap}px` : '')};
-  margin-bottom: ${({ $mb }) => $mb}px;
+const HeadContainer = styled(Flex)`
+  margin-bottom: 15px;
 `;
 
 const LinkAnchor = styled(Link)`
@@ -97,19 +105,24 @@ const LinkAnchor = styled(Link)`
     text-decoration: underline;
     text-underline-position: under;
   }
+
+  &:not(:first-child) {
+    margin-left: 24px;
+  }
+
+  @media ${({ theme }) => theme.media.tabletS} {
+    font-size: inherit;
+    line-height: 14px;
+  }
 `;
 
-const RouteAnchor = styled.p`
-  margin-left: 24px;
-  color: ${({ theme }) => theme.color.gray4};
-  font-size: 1.6rem;
-  font-weight: 500;
-  line-height: 19px;
-  cursor: pointer;
+const InfoContainer = styled(FlexColumn)`
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 10px;
 
-  &:hover {
-    text-decoration: underline;
-    text-underline-position: under;
+  @media ${({ theme }) => theme.media.mobile} {
+    margin-bottom: 14px;
   }
 `;
 
@@ -117,6 +130,10 @@ const CompanyInfo = styled.p`
   color: ${({ theme }) => theme.color.gray3};
   font-size: 1.4rem;
   line-height: 140%;
+
+  @media ${({ theme }) => theme.media.tabletS} {
+    font-size: 1.2rem;
+  }
 `;
 
 const CopyRight = styled.p`
@@ -125,14 +142,25 @@ const CopyRight = styled.p`
   color: ${({ theme }) => theme.color.gray3};
   font-size: 1.4rem;
   line-height: 17px;
+
+  @media ${({ theme }) => theme.media.tabletS} {
+    font-size: inherit;
+    line-height: 14px;
+  }
+`;
+
+const TermContainer = styled(FlexColumn)`
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 20px;
 `;
 
 const TermAnchor = styled(Link)`
   min-width: 116px;
+  padding-top: 6px;
   color: ${({ theme }) => theme.color.gray4};
   font-size: 1.4rem;
   line-height: 17px;
-  padding-top: 6px;
   cursor: pointer;
 
   &:hover {
@@ -142,6 +170,11 @@ const TermAnchor = styled(Link)`
 
   &:not(:first-child) {
     margin-left: 54px;
+  }
+
+  @media ${({ theme }) => theme.media.tabletS} {
+    font-size: 1.2rem;
+    line-height: 20px;
   }
 `;
 

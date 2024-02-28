@@ -1,4 +1,9 @@
-import { InstagramImage, LinkedinImage, NaverBlogImage, TistoryImage } from "../icons";
+import {
+  InstagramImage,
+  LinkedinImage,
+  NaverBlogImage,
+  TistoryImage,
+} from '../icons';
 
 export const ANCHOR = {
   company: {
@@ -8,11 +13,11 @@ export const ANCHOR = {
   },
   service: {
     text: '서비스 소개',
-    path: '/',
+    path: 'https://rebuilderai.com/', // 원래는 '/' 경로 + useNavigate으로 이동
   },
   contact: {
     text: '기업문의',
-    path: '/contact',
+    path: 'https://rebuilderai.com/contact', // 원래는 '/contact' 경로 + useNavigate으로 이동
   },
 };
 

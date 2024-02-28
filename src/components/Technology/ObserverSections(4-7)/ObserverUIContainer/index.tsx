@@ -142,10 +142,35 @@ const TextContainer = styled(FlexColumn)`
   &:hover {
     background-color: ${({ theme }) => theme.color.lightBlack4};
   }
+
+  @media ${({ theme }) => theme.media.laptop} {
+    padding: 28px 32px;
+  }
+
+  @media ${({ theme }) => theme.media.tabletS} {
+    padding: 24px 28px;
+  }
+
+  @media ${({ theme }) => theme.media.mobile} {
+    top: 50px;
+    left: 5%;
+    transform: unset;
+    background: unset;
+    backdrop-filter: unset;
+    padding: 0;
+  }
 `;
 
 const Heading = styled(FlexColumn)`
   margin-bottom: 40px;
+
+  @media ${({ theme }) => theme.media.laptop} {
+    margin-bottom: 36px;
+  }
+
+  @media ${({ theme }) => theme.media.tabletS} {
+    margin-bottom: 24px;
+  }
 `;
 
 const Head = styled.span`
@@ -153,6 +178,14 @@ const Head = styled.span`
   font-weight: 600;
   line-height: 138%;
   color: ${({ theme }) => theme.color.white};
+
+  @media ${({ theme }) => theme.media.laptop} {
+    font-size: 2.8rem;
+  }
+
+  @media ${({ theme }) => theme.media.mobile} {
+    font-size: 1.8rem;
+  }
 `;
 
 const Line = styled.span`
@@ -161,4 +194,16 @@ const Line = styled.span`
   line-height: 138%;
   color: ${({ theme }) => theme.color.white};
   white-space: pre-wrap;
+
+  @media ${({ theme }) => theme.media.laptop} {
+    font-size: 2rem;
+  }
+
+  @media ${({ theme }) => theme.media.tabletS} {
+    font-size: 1.6rem;
+  }
+
+  @media ${({ theme }) => theme.media.mobile} {
+    font-size: 1.2rem;
+  }
 `;

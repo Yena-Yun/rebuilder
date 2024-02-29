@@ -6,7 +6,7 @@ import { WORD_LIST } from './constants';
 import { FlexColumn, FlexBetween } from 'styles/flex';
 import { Keyframes } from 'styled-components/dist/types';
 
-export const Section2 = () => {
+const Section2 = () => {
   const { t } = useTranslation();
   const { scrollRef, isInViewport } = useFadeInObserver({
     rootMargin: '0px',
@@ -195,3 +195,5 @@ const OneLine = styled.div<{ $easeInOut: Keyframes }>`
       `};
   }
 `;
+
+export default Section2;

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useMedia } from 'hooks/useMedia';
 import translation from 'locales/en/sentences.json';
 
-export const Section3 = () => {
+const Section3 = () => {
   const { t } = useTranslation();
 
   const { isMobile, isTabletS } = useMedia();
@@ -120,3 +120,5 @@ const ImageBox = styled.div`
     }
   }
 `;
+
+export default Section3;

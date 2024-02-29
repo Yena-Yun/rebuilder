@@ -5,7 +5,7 @@ import { useMedia } from 'hooks/useMedia';
 import { FlexColumnCenter } from 'styles/flex';
 import { Keyframes } from 'styled-components/dist/types';
 
-export const Section1 = () => {
+const Section1 = () => {
   const { t } = useTranslation();
 
   const { isMobile, isTabletS } = useMedia();
@@ -164,3 +164,5 @@ const Line2 = styled.div<{ $easeInOut: Keyframes }>`
     }
   }
 `;
+
+export default Section1;

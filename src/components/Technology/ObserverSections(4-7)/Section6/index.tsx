@@ -1,7 +1,7 @@
 import { ObserverUIContainer } from '../ObserverUIContainer';
 import translation from 'locales/en/sentences.json';
 
-export const Section6 = () => {
+const Section6 = () => {
   return (
     <ObserverUIContainer
       order={6}
@@ -12,3 +12,5 @@ export const Section6 = () => {
     />
   );
 };
+
+export default Section6;

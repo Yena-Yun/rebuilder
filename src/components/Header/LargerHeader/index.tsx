@@ -135,7 +135,7 @@ const NavTab = styled.span<{ $borderLine: boolean }>`
     bottom: -2px;
     width: 100%;
     height: 2px;
-    background-color: ${({ theme }) => theme.color.blue};
+    background-color: ${({ theme }) => theme.color.blue2};
     transform-origin: 0 0;
     transform: ${({ $borderLine }) =>
       $borderLine ? 'scaleX(1)' : 'scaleX(0)'};
@@ -178,7 +178,7 @@ const Dropdown = styled.span<{
     bottom: -2px;
     width: 100%;
     height: 2px;
-    background-color: ${({ theme }) => theme.color.blue};
+    background-color: ${({ theme }) => theme.color.blue2};
     transform-origin: 0 0;
     transform: ${({ $borderLine }) =>
       $borderLine ? 'scaleX(1)' : 'scaleX(0)'};

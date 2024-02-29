@@ -26,7 +26,6 @@ const Container = styled.div`
 `;
 
 const InnerContainer = styled.div`
-  display: block;
   width: 100%;
   margin: 0 auto;
   padding: 0 16px;

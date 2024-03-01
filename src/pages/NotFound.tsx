@@ -37,7 +37,6 @@ const NotFoundContent = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  white-space: nowrap;
 `;
 
 const StatusNumber = styled.span`
@@ -51,6 +50,7 @@ const ErrorReason = styled.span`
 const UserDirection = styled.span`
   font-size: 4rem;
   color: ${({ theme }) => theme.color.blue1};
+  white-space: nowrap;
   cursor: pointer;
 `;
 

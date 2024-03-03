@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable --immutable-cache --check-cache
 
       - name: Build
         run: yarn build
@@ -36,7 +36,7 @@ jobs:
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
-            dist s3://${{env.S3_BUCKET_NAME}}
+            dist s3://${{env.S3_BUCKET_NAME}} --delete
 
       - name: Invalidate CloudFront Cache
-        run: aws cloudfront create-invalidation --distribution-id ${{secrets.AWS_CLOUDFRONT_ID}} --delete
+        run: aws cloudfront create-invalidation --distribution-id ${{secrets.AWS_CLOUDFRONT_ID}}

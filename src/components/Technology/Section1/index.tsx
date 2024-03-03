@@ -146,7 +146,8 @@ const Line2 = styled.div<{ $easeInOut: Keyframes }>`
 
   & span {
     display: block;
-    color: ${({ theme }) => theme.color.white};
+    /* color: ${({ theme }) => theme.color.white}; */
+    color: #a11212;
     font-size: 6rem;
     font-weight: 600;
     line-height: 138%;

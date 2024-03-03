@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-env:
-  AWS_REGION: ap-northeast-2
-  S3_BUCKET_NAME: rebuilder-clone
 
 permissions:
   contents: read
@@ -26,17 +23,21 @@ jobs:
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
+        env:
+          AWS_REGION: ap-northeast-2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Upload to AWS S3
+        env:
+          S3_BUCKET_NAME: rebuilder-clone
         run: |
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
-            dist s3://${{env.S3_BUCKET_NAME}} --delete
+            dist s3://${{env.S3_BUCKET_NAME}}
 
       - name: Invalidate CloudFront Cache
         run: aws cloudfront create-invalidation --distribution-id ${{secrets.AWS_CLOUDFRONT_ID}}

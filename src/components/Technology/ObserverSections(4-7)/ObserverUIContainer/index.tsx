@@ -57,11 +57,11 @@ export const ObserverUIContainer = ({
       </VideoContainer>
 
       <TextContainer>
-        <Heading>
+        <HeadContainer>
           {Object.keys(content.head).map((key, id) => (
             <Head key={key}>{t(`section${order}.head.line${id + 1}`)}</Head>
           ))}
-        </Heading>
+        </HeadContainer>
         {Object.keys(content.body).map((key, id) => (
           <Line key={key}>{t(`section${order}.body.line${id + 1}`)}</Line>
         ))}
@@ -76,7 +76,7 @@ const Container = styled.div`
   height: 200vh;
   background-color: ${({ theme }) => theme.color.darkBlack1};
 
-  @media ${({ theme }) => theme.media.mobile} {
+  @media ${({ theme }) => theme.media.tabletS} {
     height: 100vh;
   }
 `;
@@ -176,7 +176,7 @@ const TextContainer = styled(FlexColumn)`
   }
 `;
 
-const Heading = styled(FlexColumn)`
+const HeadContainer = styled(FlexColumn)`
   margin-bottom: 40px;
 
   @media ${({ theme }) => theme.media.laptop} {

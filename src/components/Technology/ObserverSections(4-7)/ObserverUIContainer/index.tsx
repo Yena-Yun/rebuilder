@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useBackgroundObserver } from './hooks/useBackgroundObserver';
+import { useVideoObserver } from './hooks/useVideoObserver';
 import { useMedia } from 'hooks/useMedia';
 import { FlexColumn } from 'styles/flex';
 
@@ -24,6 +25,7 @@ export const ObserverUIContainer = ({
   const { t } = useTranslation();
 
   const { containerRef, backgroundStatus } = useBackgroundObserver();
+  const { videoRef, isInViewport } = useVideoObserver();
   const { isMobile, isTabletS } = useMedia();
 
   const media = isMobile ? 'mobile' : isTabletS ? 'tablet' : 'pc';
@@ -32,12 +34,29 @@ export const ObserverUIContainer = ({
 
   return (
     <Container ref={containerRef}>
-      <VideoContainer className={backgroundStatus}>
-        {isLastSection && <Overlay src={BG_SOURCE} alt='last-video-overlay' />}
-        {isLastSection ? (
-          <LastVideo loop playsInline autoPlay muted src={LAST_VIDEO_SOURCE} />
+      <VideoContainer ref={videoRef} className={backgroundStatus}>
+        {!isInViewport ? (
+          <img src='/images/video-preview.png' alt='video-preview' />
         ) : (
-          <Video loop playsInline autoPlay muted src={VIDEO_SOURCE} />
+          <>
+            {isLastSection && (
+              <Overlay src={BG_SOURCE} alt='last-video-overlay' />
+            )}
+            {isLastSection ? (
+              <LastVideo
+                preload='none'
+                width='300'
+                loop
+                playsInline
+                autoPlay
+                muted
+              >
+                <source src={LAST_VIDEO_SOURCE} type='video/mp4' />
+              </LastVideo>
+            ) : (
+              <Video loop playsInline autoPlay muted src={VIDEO_SOURCE} />
+            )}
+          </>
         )}
       </VideoContainer>
 

@@ -5,7 +5,6 @@ export const useBackgroundObserver = () => {
   const [backgroundStatus, setBackgroundStatus] = useState('beforeIntersect');
 
   useEffect(() => {
-    // 관찰할 요소가 아직 준비되지 않은 경우 중단
     if (!containerRef.current) return;
 
     const callback = (entries: IntersectionObserverEntry[]) => {

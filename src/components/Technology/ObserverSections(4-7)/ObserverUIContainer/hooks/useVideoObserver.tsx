@@ -19,7 +19,7 @@ export const useVideoObserver = () => {
     const option = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.5,
+      threshold: 0,
     };
 
     const observer = new IntersectionObserver(callback, option);

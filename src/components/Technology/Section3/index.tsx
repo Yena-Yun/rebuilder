@@ -8,11 +8,11 @@ const Section3 = () => {
 
   const { isMobile, isTabletS } = useMedia();
 
-  const IMAGE_SOURCE = (index: number) => {
+  const IMAGE_SOURCE = (index: number, form: string) => {
     const size = isTabletS ? 'small' : 'large';
     const orientation = isMobile ? 'vertical' : 'horizontal';
 
-    return `/images/${size}/${orientation}-${index + 1}.png`;
+    return `/images/${size}/${orientation}-${index + 1}.${form}`;
   };
 
   return (
@@ -21,7 +21,16 @@ const Section3 = () => {
         <ImageContainer>
           {Object.keys(translation.section3).map((text, i) => (
             <ImageBox key={text}>
-              <img src={IMAGE_SOURCE(i)} alt='main-technology' />
+              <picture>
+                <source
+                  srcSet={IMAGE_SOURCE(i, 'webp')}
+                  type='image/webp'
+                />
+                <img
+                  src={IMAGE_SOURCE(i, 'png')}
+                  alt='main-technology'
+                />
+              </picture>
               <span>{t(`section3.caption${i + 1}`)}</span>
             </ImageBox>
           ))}

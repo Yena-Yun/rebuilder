@@ -36,21 +36,17 @@ export const ObserverUIContainer = ({
     <Container ref={containerRef}>
       <VideoContainer ref={videoRef} className={backgroundStatus}>
         {!isInViewport ? (
-          <img src='/images/video-preview.png' alt='video-preview' />
+          <picture>
+            <source srcSet='/images/video-preview.webp' type='image/webp' />
+            <img src='/images/video-preview.png' alt='video-preview' />
+          </picture>
         ) : (
           <>
             {isLastSection && (
               <Overlay src={BG_SOURCE} alt='last-video-overlay' />
             )}
             {isLastSection ? (
-              <LastVideo
-                preload='none'
-                width='300'
-                loop
-                playsInline
-                autoPlay
-                muted
-              >
+              <LastVideo preload='none' loop playsInline autoPlay muted>
                 <source src={LAST_VIDEO_SOURCE} type='video/mp4' />
               </LastVideo>
             ) : (

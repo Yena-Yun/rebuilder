@@ -5,6 +5,7 @@ import { useDelayText } from '../hooks/useDelayText';
 import { MENUS } from '../constants';
 import { MobileLogoImage, CloseImage, MenuImage } from '../icons';
 import { FlexBetweenCenter, FlexColumn } from 'styles/flex';
+import { MenusType } from '../constants/index';
 
 interface MobileHeaderProps {
   menuGroup: {
@@ -30,11 +31,13 @@ export const MobileHeader = ({ menuGroup }: MobileHeaderProps) => {
 
       {isShowMenu && (
         <MobileDropdownContainer>
-          {[...MENUS, <LanguageSelector hideMenu={hideMenu} />].map((nav) => (
-            <MobileMenu key={nav as string} $delayTextShowing={isShowMenuText}>
-              {nav}
-            </MobileMenu>
-          ))}
+          {[...MENUS, <LanguageSelector hideMenu={hideMenu} />].map(
+            (nav: MenusType | JSX.Element) => (
+              <MobileMenu key={String(nav)} $delayTextShowing={isShowMenuText}>
+                {'name' in nav ? nav.name : nav} {/* 타입 가드 */}
+              </MobileMenu>
+            )
+          )}
         </MobileDropdownContainer>
       )}
     </>

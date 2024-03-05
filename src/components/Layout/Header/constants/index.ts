@@ -13,6 +13,11 @@ export const LANGUAGES = [
 
 export const KOR = LANGUAGES[0].display;
 
+export type MenusType = {
+  name: string;
+  link: string;
+}
+
 export const MENUS = [
   {
     name: 'Service',

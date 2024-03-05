@@ -1,12 +1,14 @@
+import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useBackgroundObserver } from './hooks/useBackgroundObserver';
 import { useVideoObserver } from './hooks/useVideoObserver';
 import { useMedia } from 'hooks/useMedia';
 import { FlexColumn } from 'styles/flex';
+import { useEffect, useRef } from 'react';
 
 interface ObserverUIProps {
-  order?: number;
+  order: number;
   content: {
     head: Object;
     body: Object;
@@ -23,50 +25,67 @@ export const ObserverUIContainer = ({
   isLastSection,
 }: ObserverUIProps) => {
   const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
+  const scrollIndex = searchParams.get('section');
 
+  const scrollRefs = [
+    useRef<HTMLDivElement | null>(null),
+    useRef<HTMLDivElement | null>(null),
+    useRef<HTMLDivElement | null>(null),
+    useRef<HTMLDivElement | null>(null),
+  ];
   const { containerRef, backgroundStatus } = useBackgroundObserver();
   const { videoRef, isInViewport } = useVideoObserver();
   const { isMobile, isTabletS } = useMedia();
+
+  useEffect(() => {
+    if (scrollIndex)
+      scrollRefs[Number(scrollIndex) - 4].current?.scrollIntoView({
+        behavior: 'smooth',
+      });
+  }, [scrollIndex]);
 
   const media = isMobile ? 'mobile' : isTabletS ? 'tablet' : 'pc';
 
   const VIDEO_SOURCE = `/videos/${media}/tech_video${order}_${media}.mp4`;
 
   return (
-    <Container ref={containerRef}>
-      <VideoContainer ref={videoRef} className={backgroundStatus}>
-        {!isInViewport ? (
-          <picture>
-            <source srcSet='/images/video-preview.webp' type='image/webp' />
-            <img src='/images/video-preview.png' alt='video-preview' />
-          </picture>
-        ) : (
-          <>
-            {isLastSection && (
-              <Overlay src={BG_SOURCE} alt='last-video-overlay' />
-            )}
-            {isLastSection ? (
-              <LastVideo preload='none' loop playsInline autoPlay muted>
-                <source src={LAST_VIDEO_SOURCE} type='video/mp4' />
-              </LastVideo>
-            ) : (
-              <Video loop playsInline autoPlay muted src={VIDEO_SOURCE} />
-            )}
-          </>
-        )}
-      </VideoContainer>
+    <div ref={scrollRefs[order - 4]}>
+      <Container ref={containerRef}>
+        <VideoContainer ref={videoRef} className={backgroundStatus}>
+          {!isInViewport ? (
+            <picture>
+              <source srcSet='/images/video-preview.webp' type='image/webp' />
+              <img src='/images/video-preview.png' alt='video-preview' />
+            </picture>
+          ) : (
+            <>
+              {isLastSection && (
+                <Overlay src={BG_SOURCE} alt='last-video-overlay' />
+              )}
+              {isLastSection ? (
+                <LastVideo preload='none' loop playsInline autoPlay muted>
+                  <source src={LAST_VIDEO_SOURCE} type='video/mp4' />
+                </LastVideo>
+              ) : (
+                <Video loop playsInline autoPlay muted src={VIDEO_SOURCE} />
+              )}
+            </>
+          )}
+        </VideoContainer>
 
-      <TextContainer>
-        <HeadContainer>
-          {Object.keys(content.head).map((key, id) => (
-            <Head key={key}>{t(`section${order}.head.line${id + 1}`)}</Head>
+        <TextContainer>
+          <HeadContainer>
+            {Object.keys(content.head).map((key, id) => (
+              <Head key={key}>{t(`section${order}.head.line${id + 1}`)}</Head>
+            ))}
+          </HeadContainer>
+          {Object.keys(content.body).map((key, id) => (
+            <Line key={key}>{t(`section${order}.body.line${id + 1}`)}</Line>
           ))}
-        </HeadContainer>
-        {Object.keys(content.body).map((key, id) => (
-          <Line key={key}>{t(`section${order}.body.line${id + 1}`)}</Line>
-        ))}
-      </TextContainer>
-    </Container>
+        </TextContainer>
+      </Container>
+    </div>
   );
 };
 

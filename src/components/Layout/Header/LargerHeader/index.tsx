@@ -90,7 +90,7 @@ export const LargerHeader = ({ dropdownGroup }: HeaderProps) => {
         $hoveredMenu={hoveredMenu}
         onMouseLeave={() => hideDropdown()}
       >
-        {TECH_MENUS.map((menu) => (
+        {TECH_MENUS.map((menu, i) => (
           <Dropdown
             key={menu}
             onMouseOver={() => {
@@ -101,7 +101,7 @@ export const LargerHeader = ({ dropdownGroup }: HeaderProps) => {
             $borderLine={hoveredMenu === menu}
             $delayTextShowing={isShowMenuText}
           >
-            {menu}
+            <Link to={`/technology?section=${i + 4}`}>{menu}</Link>
           </Dropdown>
         ))}
       </DropdownContainer>

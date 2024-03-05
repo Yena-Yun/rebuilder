@@ -88,21 +88,19 @@ export const LargerHeader = ({ dropdownGroup }: HeaderProps) => {
       <DropdownContainer
         $isHoverDropdown={isShowDropdown}
         $hoveredMenu={hoveredMenu}
+        onMouseOver={() => showDropdown()}
         onMouseLeave={() => hideDropdown()}
       >
         {TECH_MENUS.map((menu, i) => (
-          <Dropdown
+          <DropdownText
             key={menu}
-            onMouseOver={() => {
-              setHoveredMenu(menu);
-              showDropdown();
-            }}
+            onMouseOver={() => setHoveredMenu(menu)}
             onMouseLeave={() => setHoveredMenu('')}
             $borderLine={hoveredMenu === menu}
             $delayTextShowing={isShowMenuText}
           >
             <Link to={`/technology?section=${i + 4}`}>{menu}</Link>
-          </Dropdown>
+          </DropdownText>
         ))}
       </DropdownContainer>
     </>
@@ -153,11 +151,12 @@ const DropdownContainer = styled(FlexCenter)<{
   display: ${({ $isHoverDropdown, $hoveredMenu }) =>
     $isHoverDropdown || $hoveredMenu === 'Technology' ? 'flex' : 'none'};
   margin-top: 48px;
+  padding-bottom: 40px;
   white-space: pre-wrap;
   transition: all 0.2s ease-in-out 0s;
 `;
 
-const Dropdown = styled.span<{
+const DropdownText = styled.span<{
   $borderLine: boolean;
   $delayTextShowing: boolean;
 }>`

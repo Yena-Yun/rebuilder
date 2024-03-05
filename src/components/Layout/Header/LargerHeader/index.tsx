@@ -99,6 +99,7 @@ export const LargerHeader = ({ dropdownGroup }: HeaderProps) => {
             $borderLine={hoveredMenu === menu}
             $delayTextShowing={isShowMenuText}
           >
+            {/* i에 4를 더해주는 이유: i는 0부터 시작하지만 section은 4(section=4)부터 시작하기 위해 */}
             <Link to={`/technology?section=${i + 4}`}>{menu}</Link>
           </DropdownText>
         ))}

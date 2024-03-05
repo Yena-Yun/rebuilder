@@ -39,6 +39,7 @@ export const ObserverUIContainer = ({
   const { isMobile, isTabletS } = useMedia();
 
   useEffect(() => {
+    // scrollIndex에서 4를 빼주는 이유: 쿼리 스트링으로 가져온 값(4부터 시작)을 scrollRefs 배열 인덱스(0부터 시작)와 맞춰주기 위해서
     if (scrollIndex)
       scrollRefs[Number(scrollIndex) - 4].current?.scrollIntoView({
         behavior: 'smooth',

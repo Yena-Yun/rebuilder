@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { LogoResponsive } from '../shared/LogoResponsive';
 import { useDelayText } from '../hooks/useDelayText';
@@ -38,17 +39,19 @@ export const LargerHeader = ({ dropdownGroup }: HeaderProps) => {
         <LogoResponsive image={<LogoImage />} />
 
         <FlexAlignCenter>
-          {MENUS.map((menu: string) => (
+          {MENUS.map(({ name, link }) => (
             <NavTab
-              key={menu}
+              key={name}
               onMouseOver={() => {
-                setHoveredMenu(menu);
-                menu === TECHNOLOGY ? showDropdown() : hideDropdown();
+                setHoveredMenu(name);
+                name === TECHNOLOGY ? showDropdown() : hideDropdown();
               }}
               onMouseLeave={() => setHoveredMenu('')}
-              $borderLine={hoveredMenu === menu}
+              $borderLine={hoveredMenu === name}
             >
-              {menu}
+              <Link to={link} target='_blank'>
+                {name}
+              </Link>
             </NavTab>
           ))}
         </FlexAlignCenter>

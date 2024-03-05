@@ -5,19 +5,21 @@ import {
   TistoryImage,
 } from '../icons';
 
+const BASE_URL = 'https://rebuilderai.com';
+
 export const ANCHOR = {
   company: {
     name: '(주)리빌더에이아이',
-    url: 'https://rebuilderai.com/',
+    url: `${BASE_URL}`,
     ariaLabel: 'Go to RebuilderAI Homepage',
   },
   service: {
     text: '서비스 소개',
-    path: 'https://rebuilderai.com/', // 원래는 '/' 경로 + useNavigate으로 이동
+    path: `${BASE_URL}`,
   },
   contact: {
     text: '기업문의',
-    path: 'https://rebuilderai.com/contact', // 원래는 '/contact' 경로 + useNavigate으로 이동
+    path: `${BASE_URL}/contact`,
   },
 };
 
@@ -43,31 +45,31 @@ export const TERM = [
     {
       id: 0,
       title: '서비스 이용약관 동의',
-      path: '/policy/service-using',
+      path: `${BASE_URL}/policy/service-using`,
     },
     {
       id: 1,
       title: '개인정보 처리방침 동의',
-      path: '/policy/privacy',
+      path: `${BASE_URL}/policy/privacy`,
     },
   ],
   [
     {
       id: 2,
       title: '데이터 이용동의',
-      path: '/policy/data-afford',
+      path: `${BASE_URL}/policy/data-afford`,
     },
     {
       id: 3,
       title: '제 3자 정보제공 동의',
-      path: '/policy/third-agree',
+      path: `${BASE_URL}/policy/third-agree`,
     },
   ],
   [
     {
       id: 4,
       title: '광고성 정보수신 동의',
-      path: '/policy/advertise-agree',
+      path: `${BASE_URL}/policy/advertise-agree`,
     },
   ],
 ];

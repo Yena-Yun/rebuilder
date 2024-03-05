@@ -145,7 +145,7 @@ const CopyRight = styled.p`
 
   @media ${({ theme }) => theme.media.tabletS} {
     font-size: inherit;
-    line-height: 14px;
+    margin-bottom: 6px;
   }
 `;
 
@@ -153,6 +153,10 @@ const TermContainer = styled(FlexColumn)`
   justify-content: center;
   align-items: flex-start;
   margin-bottom: 20px;
+
+  @media ${({ theme }) => theme.media.tabletS} {
+    line-height: 14px;
+  }
 `;
 
 const TermAnchor = styled(Link)`

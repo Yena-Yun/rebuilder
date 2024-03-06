@@ -49,9 +49,7 @@ export const LargerHeader = ({ dropdownGroup }: HeaderProps) => {
               onMouseLeave={() => setHoveredMenu('')}
               $borderLine={hoveredMenu === name}
             >
-              <Link to={link} target='_blank'>
-                {name}
-              </Link>
+              <Link to={link}>{name}</Link>
             </NavTab>
           ))}
         </FlexAlignCenter>

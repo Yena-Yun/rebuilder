@@ -34,7 +34,7 @@ export const MobileHeader = ({ menuGroup }: MobileHeaderProps) => {
         <MobileDropdownContainer>
           {[...MENUS, <LanguageSelector hideMenu={hideMenu} />].map(
             (nav: MenusType | JSX.Element) => (
-              <Link to={'link' in nav ? nav.link : ''} target='_blank'>
+              <Link to={'link' in nav ? nav.link : ''}>
                 <MobileMenu
                   key={String(nav)}
                   $delayTextShowing={isShowMenuText}

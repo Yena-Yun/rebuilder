@@ -1,11 +1,10 @@
-import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useBackgroundObserver } from './hooks/useBackgroundObserver';
 import { useVideoObserver } from './hooks/useVideoObserver';
+import { useScrollView } from './hooks/useScrollView';
 import { useMedia } from 'hooks/useMedia';
 import { FlexColumn } from 'styles/flex';
-import { useEffect, useRef } from 'react';
 
 interface ObserverUIProps {
   order: number;
@@ -25,28 +24,15 @@ export const ObserverUIContainer = ({
   isLastSection,
 }: ObserverUIProps) => {
   const { t } = useTranslation();
-  const [searchParams] = useSearchParams();
-  const scrollIndex = searchParams.get('section');
 
-  const scrollRefs = [
-    useRef<HTMLDivElement | null>(null),
-    useRef<HTMLDivElement | null>(null),
-    useRef<HTMLDivElement | null>(null),
-    useRef<HTMLDivElement | null>(null),
-  ];
   const { containerRef, backgroundStatus } = useBackgroundObserver();
   const { videoRef, isInViewport } = useVideoObserver();
+  const { scrollRefs } = useScrollView();
   const { isMobile, isTabletS } = useMedia();
-
-  useEffect(() => {
-    // scrollIndex에서 4를 빼주는 이유: 쿼리 스트링으로 가져온 값(4부터 시작)을 scrollRefs 배열 인덱스(0부터 시작)와 맞춰주기 위해서
-    if (scrollIndex)
-      scrollRefs[Number(scrollIndex) - 4].current?.scrollIntoView();
-  }, [scrollIndex]);
 
   const media = isMobile ? 'mobile' : isTabletS ? 'tablet' : 'pc';
 
-  const VIDEO_SOURCE = `/videos/${media}/tech_video${order}_${media}.mp4`;
+  const videoSource = `/videos/${media}/tech_video${order}_${media}.mp4`;
 
   return (
     <div ref={scrollRefs[order - 4]}>
@@ -67,7 +53,7 @@ export const ObserverUIContainer = ({
                   <source src={LAST_VIDEO_SOURCE} type='video/mp4' />
                 </LastVideo>
               ) : (
-                <Video loop playsInline autoPlay muted src={VIDEO_SOURCE} />
+                <Video loop playsInline autoPlay muted src={videoSource} />
               )}
             </>
           )}

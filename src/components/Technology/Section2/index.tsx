@@ -22,17 +22,17 @@ const Section2 = () => {
 
             <FlexColumn>
               {WORD_LIST.map(({ delay, capital, restWord }) => (
-                <KeywordContainer
+                <Keyword
                   key={delay}
                   className={isInViewport ? 'frame-in' : ''}
                   $delay={delay}
                   $easeInOut={easeInOut}
                 >
-                  <Keyword>
+                  <KeywordText>
                     <span className='capital'>{capital}</span>
                     {restWord}
-                  </Keyword>
-                </KeywordContainer>
+                  </KeywordText>
+                </Keyword>
               ))}
             </FlexColumn>
 
@@ -83,7 +83,7 @@ const InnerContainer = styled.div`
   }
 `;
 
-const KeywordContainer = styled.div<{ $delay: string; $easeInOut: Keyframes }>`
+const Keyword = styled.div<{ $delay: string; $easeInOut: Keyframes }>`
   opacity: 0;
   margin-bottom: 4.6px;
 
@@ -105,7 +105,7 @@ const KeywordContainer = styled.div<{ $delay: string; $easeInOut: Keyframes }>`
   }
 `;
 
-const Keyword = styled.span`
+const KeywordText = styled.span`
   color: ${({ theme }) => theme.color.white};
   font-size: 5.06rem;
   font-weight: 500;

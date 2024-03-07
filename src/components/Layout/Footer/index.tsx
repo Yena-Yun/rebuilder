@@ -164,7 +164,7 @@ const TermAnchor = styled(Link)`
   padding-top: 6px;
   color: ${({ theme }) => theme.color.gray4};
   font-size: 1.4rem;
-  line-height: 17px;
+  line-height: 140%;
   cursor: pointer;
 
   &:hover {
@@ -178,7 +178,6 @@ const TermAnchor = styled(Link)`
 
   @media ${({ theme }) => theme.media.tabletS} {
     font-size: 1.2rem;
-    line-height: 20px;
   }
 `;
 

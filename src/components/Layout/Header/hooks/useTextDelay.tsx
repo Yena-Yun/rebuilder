@@ -9,7 +9,7 @@ export const useTextDelay = (flag: boolean) => {
 
   const delayDropdownText = () => {
     setTimeout(() => {
-      setIsShowMenuText(true);
+      setIsShowMenuText((prev) => !prev);
     }, 300);
   };
 

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { LanguageSelector } from './LanguageSelector';
 import { LogoResponsive } from '../shared/LogoResponsive';
-import { useDelayText } from '../hooks/useDelayText';
+import { useTextDelay } from '../hooks/useTextDelay';
 import { MENUS } from '../constants';
 import { MobileLogoImage, CloseImage, MenuImage } from '../icons';
 import { FlexBetweenCenter, FlexColumn } from 'styles/flex';
@@ -19,7 +19,7 @@ interface MobileHeaderProps {
 export const MobileHeader = ({ menuGroup }: MobileHeaderProps) => {
   const { isShowMenu, showMenu, hideMenu } = menuGroup;
 
-  const { isShowMenuText } = useDelayText(isShowMenu);
+  const { isShowMenuText } = useTextDelay(isShowMenu);
 
   return (
     <>

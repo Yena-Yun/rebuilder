@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { LogoResponsive } from '../shared/LogoResponsive';
-import { useDelayText } from '../hooks/useDelayText';
+import { useTextDelay } from '../hooks/useTextDelay';
 import { changeLanguage } from '../utils/changeLanguage';
 import { KOR, LANGUAGES, MENUS, TECHNOLOGY, TECH_MENUS } from '../constants';
 import { LogoImage, LanguageImage } from '../icons';
@@ -23,7 +23,7 @@ export const LargerHeader = ({ dropdownGroup }: HeaderProps) => {
 
   const { isShowDropdown, showDropdown, hideDropdown } = dropdownGroup;
 
-  const { isShowMenuText } = useDelayText(isShowDropdown);
+  const { isShowMenuText } = useTextDelay(isShowDropdown);
 
   const showLanguageModal = () => {
     setIsHoverLanguage(true);

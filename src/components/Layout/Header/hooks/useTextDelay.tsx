@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export const useDelayText = (flag: boolean) => {
+export const useTextDelay = (flag: boolean) => {
   const [isShowMenuText, setIsShowMenuText] = useState(false);
 
   useEffect(() => {

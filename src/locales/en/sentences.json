@@ -46,7 +46,8 @@
       "line4": " ",
       "line5": "By building a substantial amount of material inference data",
       "line6": "internally, we can restore the original color of transparent",
-      "line7": "or metallic materials excluding reflected light. We are continually striving to make 3D scanning even more precise."
+      "line7": "or metallic materials excluding reflected light. We are continually",
+      "line8": "striving to make 3D scanning even more precise."
     }
   },
   "section6": {
@@ -76,7 +77,8 @@
       "line4": " ",
       "line5": "Areas that cannot be captured with existing 3D models, such as ",
       "line6": "reflections or lighting that change depending on the viewpoint,",
-      "line7": "can also be captured in 3D through a rendering engine based on view synthesis, allowing for confirmation anytime, anywhere."
+      "line7": "can also be captured in 3D through a rendering engine based on",
+      "line8": "view synthesis, allowing for confirmation anytime, anywhere."
     }
   },
   "footer": {

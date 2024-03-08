@@ -22,14 +22,8 @@ const Section3 = () => {
           {Object.keys(translation.section3).map((text, i) => (
             <ImageBox key={text}>
               <picture>
-                <source
-                  srcSet={IMAGE_SOURCE(i, 'webp')}
-                  type='image/webp'
-                />
-                <img
-                  src={IMAGE_SOURCE(i, 'png')}
-                  alt='main-technology'
-                />
+                <source srcSet={IMAGE_SOURCE(i, 'webp')} type='image/webp' />
+                <img src={IMAGE_SOURCE(i, 'png')} alt='main-technology' />
               </picture>
               <span>{t(`section3.caption${i + 1}`)}</span>
             </ImageBox>

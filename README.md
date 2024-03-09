@@ -81,7 +81,7 @@ RebuilderAI 회사 소개 사이트의 '/technology' 페이지를 구현하였�
 
 ## Github Actions로 CI/CD 구축
 
-- CI/CD를 설정하여 배포 과정을 간편화 (🔗[관련 블로그](https://velog.io/@yena1025/S3%EC%99%80-CloudFront%EB%A1%9C-%EB%B0%B0%ED%8F%AC-Github-Actions%EB%A1%9C-%EC%9E%AC%EB%B0%B0%ED%8F%AC-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0))
+- CI/CD를 설정하여 재배포 과정을 간편화 (🔗[관련 블로그](https://velog.io/@yena1025/S3%EC%99%80-CloudFront%EB%A1%9C-%EB%B0%B0%ED%8F%AC-Github-Actions%EB%A1%9C-%EC%9E%AC%EB%B0%B0%ED%8F%AC-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0))
 
 ## 영상 lazy load
 
@@ -92,18 +92,18 @@ RebuilderAI 회사 소개 사이트의 '/technology' 페이지를 구현하였�
 - 렌더링 전 폰트를 미리 불러와서 FOUT 현상 제거 (🔗[관련 블로그](https://velog.io/@yena1025/font-%ED%8F%B0%ED%8A%B8-preload%ED%95%98%EA%B8%B0-jquirlcw))
 
 
-## UX 개선
+# UX 개선
 
 - 첫 렌더링 때 항상 화면 최상단으로 이동 (ScrollToTop 컴포넌트)
 - 서브 메뉴 텍스트의 등장 시간 지연 (setTimeout)
 
-## 코드 개선
+# 코드 개선
 
 - 컴포넌트가 UI 렌더링에만 집중하도록 자바스크립트 로직을 **커스텀 훅**으로 분리
-- 반복되는 UI 컴포넌트 **모듈화** (🔗[코드](https://github.com/Yena-Yun/rebuilder/blob/main/src/components/Technology/ObserverSections(4-7)/ObserverUIContainer/index.tsx))
+- 반복되는 **UI 모듈화** (🔗[코드](https://github.com/Yena-Yun/rebuilder/blob/main/src/components/Technology/ObserverSections(4-7)/ObserverUIContainer/index.tsx))
 - 렌더링 간 변하지 않는 고정 값을 **상수(constant)** 처리
 
-## 부가 구현
+# 부가 구현
 
 - 2가지 이상의 타입이 혼합된 배열에서 **타입 가드** 활용
 - 404 에러 안내를 위한 **NotFound** 화면 구현

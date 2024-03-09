@@ -22,19 +22,24 @@ RebuilderAI 회사 소개 사이트의 '/technology' 페이지를 구현하였�
 (시연 영상)
 
 ### 시간차가 있는 fade-in 애니메이션 구현
+(화면에 마우스가 등장하고 잠깐 기다려주세요! - 스크롤해야 동작하는 fade-in 애니메이션) <br/>
 
-(시연 영상)
+<img src="https://github.com/Yena-Yun/rebuilder/assets/68722179/c15b997f-923e-47dc-873f-81c7ec0e475c" width="500" />
+
 
 ### 스크롤 위치에 따라 분기 CSS 적용
+* 스크롤 중 뒷배경 스크롤 고정 
+* 섹션을 벗어날 때 다시 스크롤
 
-(시연 영상)
+![스크롤 3가지 분기](https://github.com/Yena-Yun/rebuilder/assets/68722179/f28a1ed1-744a-4e1c-b372-7c30538c7fcb)
+
 
 ### 다국어 적용 (ko, en)
 
 (시연 영상)
 
 ## 반응형 구현 (breakpoint: 600/768/1024/1200/1280)
-특정 breakpoint에서 화면 크기에 맞는 영상을 새로 로드 (mobile: 600, tablet: 768, pc: 1280)
+* 특정 breakpoint에서 화면 크기에 맞는 영상을 불러옴 (오른쪽 네트워크 탭, 600/768/1280)
 ![1e01af21-93dc-4ecd-b2da-6452f1df7f8d-ezgif com-video-to-gif-converter](https://github.com/Yena-Yun/rebuilder/assets/68722179/b882db23-32b3-414b-b7eb-82e7154e3b06)
 
 ### CRA → Vite 마이그레이션

@@ -54,7 +54,7 @@ RebuilderAI 회사 소개 사이트의 '/technology' 페이지를 구현하였�
 
 
 ## 반응형 구현 (breakpoint: 600/768/1024/1200/1280)
-* 특정 breakpoint에서 화면 크기에 맞는 영상을 불러옴 (오른쪽 네트워크 탭, 1280/768/600일 때)
+특정 breakpoint에서 화면 크기에 맞는 영상을 불러옴 (오른쪽 네트워크 탭, 1280/768/600일 때)
 
 <img src="https://github.com/Yena-Yun/rebuilder/assets/68722179/b882db23-32b3-414b-b7eb-82e7154e3b06" width="500" />
 
@@ -79,17 +79,17 @@ RebuilderAI 회사 소개 사이트의 '/technology' 페이지를 구현하였�
 
 # 이슈 해결
 
-## Github Actions로 CI/CD 구축
+### Github Actions로 CI/CD 구축
 
-- CI/CD를 설정하여 재배포 과정을 간편화 (🔗[관련 블로그](https://velog.io/@yena1025/S3%EC%99%80-CloudFront%EB%A1%9C-%EB%B0%B0%ED%8F%AC-Github-Actions%EB%A1%9C-%EC%9E%AC%EB%B0%B0%ED%8F%AC-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0))
+CI/CD를 설정하여 재배포 과정을 간편화 (🔗[관련 블로그](https://velog.io/@yena1025/S3%EC%99%80-CloudFront%EB%A1%9C-%EB%B0%B0%ED%8F%AC-Github-Actions%EB%A1%9C-%EC%9E%AC%EB%B0%B0%ED%8F%AC-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0))
 
-## 영상 lazy load
+### 영상 lazy load
 
-- 뷰포트에 없는 영상을 지연 로드하여 네트워크 부하를 줄임 (🔗[커밋](https://github.com/Yena-Yun/rebuilder/commit/f447d5754e393a6dac3f673aa011eb9c7fc79910))
+뷰포트에 없는 영상을 지연 로드하여 네트워크 부하를 줄임 (🔗[커밋](https://github.com/Yena-Yun/rebuilder/commit/f447d5754e393a6dac3f673aa011eb9c7fc79910))
 
-## 폰트 preload
+### 폰트 preload
 
-- 렌더링 전 폰트를 미리 불러와서 FOUT 현상 제거 (🔗[관련 블로그](https://velog.io/@yena1025/font-%ED%8F%B0%ED%8A%B8-preload%ED%95%98%EA%B8%B0-jquirlcw))
+렌더링 전 폰트를 미리 불러와서 FOUT 현상 제거 (🔗[관련 블로그](https://velog.io/@yena1025/font-%ED%8F%B0%ED%8A%B8-preload%ED%95%98%EA%B8%B0-jquirlcw))
 
 
 # UX 개선

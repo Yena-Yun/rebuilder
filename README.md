@@ -1,28 +1,18 @@
 # AI 회사 사이트 페이지 구현
 
-## 배포 링크: https://d29jsyxb34kmjf.cloudfront.net/
+### AWS 배포: https://d29jsyxb34kmjf.cloudfront.net/
 
 (전체 화면 시연하는 영상)
 
-RebuilderAI 회사 사이트의 'Technology' 화면을 구현하였습니다.
+RebuilderAI 회사 소개 사이트의 '/technology' 페이지를 구현하였습니다.
 
-## 배운 점
-
-- 이미지, 영상 다루기 + 최적화
-- 자바스크립트 애니메이션
-- AWS 클라우드 배포
-- CI/CD 구축
 
 ## ⚒️ 기술 스택
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-
 ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
-
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
-
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
 ## ✨ 구현 사항
@@ -43,9 +33,9 @@ RebuilderAI 회사 사이트의 'Technology' 화면을 구현하였습니다.
 
 (시연 영상)
 
-## 반응형 구현 (600/768/1024/1200/1280)
-
-(시연 영상)
+## 반응형 구현 (breakpoint: 600/768/1024/1200/1280)
+특정 breakpoint에서 화면 크기에 맞는 영상을 새로 로드 (mobile: 600, tablet: 768, pc: 1280)
+![1e01af21-93dc-4ecd-b2da-6452f1df7f8d-ezgif com-video-to-gif-converter](https://github.com/Yena-Yun/rebuilder/assets/68722179/b882db23-32b3-414b-b7eb-82e7154e3b06)
 
 ### CRA → Vite 마이그레이션
 

@@ -2,20 +2,6 @@
 
 RebuilderAI 회사 소개 사이트의 '/technology' 페이지를 구현하였습니다.
 
-### AWS 배포: https://d29jsyxb34kmjf.cloudfront.net/
-<br/>
-
-|목차|
-|------|
-|[기술 스택](#기술-스택)|
-|[구현 사항](#구현-사항)|
-|[S3 + CloudFront 배포](#s3--cloudfront-배포)|
-|[이슈 해결](#이슈-해결)|
-|[UX 개선](#ux-개선)|
-|[코드 개선](#코드-개선)|
-|[부가 구현](#부가-구현)|
-
-
 
 # 기술 스택
 
@@ -88,21 +74,16 @@ RebuilderAI 회사 소개 사이트의 '/technology' 페이지를 구현하였�
 
 ### Github Actions로 CI/CD 구축
 
-CI/CD를 설정하여 재배포 과정을 간편화 (🔗[관련 블로그](https://velog.io/@yena1025/S3%EC%99%80-CloudFront%EB%A1%9C-%EB%B0%B0%ED%8F%AC-Github-Actions%EB%A1%9C-%EC%9E%AC%EB%B0%B0%ED%8F%AC-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0))
+CI/CD를 설정하여 **재배포 과정을 간편화** (🔗[관련 블로그](https://velog.io/@yena1025/S3%EC%99%80-CloudFront%EB%A1%9C-%EB%B0%B0%ED%8F%AC-Github-Actions%EB%A1%9C-%EC%9E%AC%EB%B0%B0%ED%8F%AC-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0))
 
 ### 영상 lazy load
 
-뷰포트에 없는 영상을 지연 로드하여 네트워크 부하를 줄임 (🔗[커밋](https://github.com/Yena-Yun/rebuilder/commit/f447d5754e393a6dac3f673aa011eb9c7fc79910))
+뷰포트에 없는 영상을 지연 로드하여 **네트워크 부하를 줄임** (🔗[커밋](https://github.com/Yena-Yun/rebuilder/commit/f447d5754e393a6dac3f673aa011eb9c7fc79910))
 
 ### 폰트 preload
 
-렌더링 전 폰트를 미리 불러와서 FOUT 현상 제거 (🔗[관련 블로그](https://velog.io/@yena1025/font-%ED%8F%B0%ED%8A%B8-preload%ED%95%98%EA%B8%B0-jquirlcw))
+렌더링 전 폰트를 미리 불러와서 **FOUT 현상 제거** (🔗[관련 블로그](https://velog.io/@yena1025/font-%ED%8F%B0%ED%8A%B8-preload%ED%95%98%EA%B8%B0-jquirlcw))
 
-
-# UX 개선
-
-- 첫 렌더링 때 항상 화면 최상단으로 이동 (ScrollToTop 컴포넌트)
-- 서브 메뉴 텍스트의 등장 시간 지연 (setTimeout)
 
 # 코드 개선
 
@@ -114,4 +95,5 @@ CI/CD를 설정하여 재배포 과정을 간편화 (🔗[관련 블로그](http
 
 - 2가지 이상의 타입이 혼합된 배열에서 **타입 가드** 활용 (🔗[커밋](https://github.com/Yena-Yun/rebuilder/commit/e457962aded795a2e8d485ce50477af1baec0406))
 - 404 에러 안내를 위한 **NotFound** 화면 구현
+- 첫 렌더링 때 항상 화면 최상단으로 이동 (**ScrollToTop**)
 - Vite **절대 경로** 설정

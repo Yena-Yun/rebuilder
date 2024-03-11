@@ -2,6 +2,8 @@
 
 RebuilderAI 회사 소개 사이트의 '/technology' 페이지를 구현하였습니다.
 
+#### [AWS 배포 링크](d29jsyxb34kmjf.cloudfront.net)🔗
+
 
 # 기술 스택
 

@@ -10,14 +10,14 @@ const Section1 = () => {
 
   const { isMobile, isTabletS } = useMedia();
 
-  const VIDEO_SOURCE = () => {
+  const videoSource = () => {
     const media = isMobile ? 'mobile' : isTabletS ? 'tablet' : 'pc';
     return `/videos/${media}/tech_video1_${media}.mp4`;
   };
 
   return (
     <Container>
-      <Video autoPlay muted playsInline src={VIDEO_SOURCE()} />
+      <Video autoPlay muted playsInline src={videoSource()} />
 
       <MainBackground></MainBackground>
 

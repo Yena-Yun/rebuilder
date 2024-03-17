@@ -9,10 +9,6 @@ export const useMedia = () => {
     query: '(max-width: 768px)',
   });
 
-  const isTabletM = useMediaQuery({
-    query: '(max-width: 1024px)',
-  });
-
   const isTabletL = useMediaQuery({
     query: '(max-width: 1200px)',
   });
@@ -25,5 +21,5 @@ export const useMedia = () => {
     query: '(max-width: 1280px)',
   });
 
-  return { isMobile, isTabletS, isTabletM, isTabletL, overTabletL, isLaptop };
+  return { isMobile, isTabletS, isTabletL, overTabletL, isLaptop };
 };

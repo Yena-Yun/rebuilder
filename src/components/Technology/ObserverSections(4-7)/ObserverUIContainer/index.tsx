@@ -15,7 +15,9 @@ interface ObserverUIProps {
   isLastSection?: boolean;
 }
 
-const BG_SOURCE = '/images/overlay.png';
+const PREVIEW_WEBP = '/images/video-preview.webp';
+const PREVIEW_JPG = '/images/video-preview.jpg';
+const BG_SOURCE = '/images/overlay.jpg';
 const LAST_VIDEO_SOURCE = '/videos/tech_video7.mp4';
 
 export const ObserverUIContainer = ({
@@ -40,8 +42,8 @@ export const ObserverUIContainer = ({
         <VideoContainer ref={videoRef} className={backgroundStatus}>
           {!isInViewport ? (
             <picture>
-              <source srcSet='/images/video-preview.webp' type='image/webp' />
-              <img src='/images/video-preview.png' alt='video-preview' />
+              <source srcSet={PREVIEW_WEBP} type='image/webp' />
+              <img src={PREVIEW_JPG} alt='video-preview' />
             </picture>
           ) : (
             <>

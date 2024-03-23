@@ -23,7 +23,7 @@ const Section3 = () => {
             <ImageBox key={text}>
               <picture>
                 <source srcSet={IMAGE_SOURCE(i, 'webp')} type='image/webp' />
-                <img src={IMAGE_SOURCE(i, 'png')} alt='main-technology' />
+                <img src={IMAGE_SOURCE(i, 'jpg')} alt='main-technology' />
               </picture>
               <span>{t(`section3.caption${i + 1}`)}</span>
             </ImageBox>
